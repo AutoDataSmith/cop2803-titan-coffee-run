@@ -109,6 +109,9 @@ I am creating the homepage for Titan Coffee Run, a coffee delivery service for S
 ### Response Summary
 The AI generated a basic homepage structure using semantic HTML5 elements such as header, nav, main, section, and footer. It included a title area for the company, a short description of the service, and a placeholder section for the future banner slideshow. The code also followed accessibility best practices by using headings, meaningful text, and a logical page structure.
 
+### Results:
+I am using header, main, footer, nav, and section for semantic markup. Added a css file to support design consideration to make the site appealing.
+
 ### Prompt 5
 What are three specific ways I could make this coffee delivery homepage more appealing to college students?
 
