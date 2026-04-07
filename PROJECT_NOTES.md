@@ -130,3 +130,12 @@ The AI suggested a simple image rotator that uses JavaScript to switch the image
 
 ### Results:
 ToDo
+
+### Prompt 7
+What kinds of banner images would work well for a college coffee delivery website? Give me five specific ideas.
+
+### Response Summary
+The AI suggested banner ideas such as students walking on campus with coffee, a close-up of hot coffee drinks, a coffee delivery scene near a college building, a student study session with coffee, and a promotional image featuring coffee and pastries. These ideas fit the college audience and support the branding of the website.
+
+### Results:
+ToDo
