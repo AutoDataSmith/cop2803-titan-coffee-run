@@ -1,4 +1,5 @@
-**Name:** Kenneth Smith 2555867  
+**Name:** Kenneth Smith 
+**Student ID:** 2555867  
 **Course:** COP2803 – Client-side JavaScript  
 **Assignment:** Assignment 2  
 **Date:** April 2026  
@@ -117,3 +118,15 @@ What are three specific ways I could make this coffee delivery homepage more app
 
 ### Response Summary
 The AI suggested adding student-friendly promotional language, highlighting convenience for busy class schedules, and using more engaging visuals such as coffee images or campus-themed banners. It also suggested stronger call-to-action text and a more modern visual style.
+
+### Results:
+I updated the "About" section to to be more student-focused.  I will add more styling later based on suggestions about visuals.
+
+### Prompt 6
+I need a simple banner slideshow for my coffee shop homepage using only HTML, CSS, and JavaScript. Can you show me how to make it rotate through images automatically every 3 seconds without using any libraries?
+
+### Response Summary
+The AI suggested a simple image rotator that uses JavaScript to switch the image source every 3 seconds. It explained that the HTML needs an image element, the CSS should size and style the banner area, and the JavaScript should store image paths in an array and cycle through them with a timer.
+
+### Results:
+ToDo
