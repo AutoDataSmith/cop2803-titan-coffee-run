@@ -53,11 +53,15 @@ Organizing files into folders is important because it makes the project easier t
 
 ## Reflection
 
-Using AI to learn about project structure helped provide a clear and organized explanation of how professional front-end projects are set up. It also made it easier to understand why organization is important for long-term development and collaboration.
+Parts 1: Using AI to learn about project structure helped provide a clear and organized explanation of how professional front-end projects are set up. It also made it easier to understand why organization is important for long-term development and collaboration.
+
+Part 2: Creating the folder structure early helps ensure that the project remains organized as more files are added. It also aligns with best practices used in professional front-end development.
 
 
 
 ## AI Interaction Log
+
+## Part 1: Understanding Project Structure
 
 ### Prompt 1
 What is the standard folder structure for a front-end web development project? Please explain what each folder is used for.
@@ -72,3 +76,32 @@ Why is it important to organize files this way rather than putting everything in
 
 ### Response Summary
 The AI explained that organizing files improves readability, maintainability, and scalability. It also helps developers collaborate more effectively and keeps different responsibilities (structure, style, behavior) separated.
+
+
+## Part 2: Project Structure Setup
+
+### Prompt 3
+I am building a front-end website for a coffee delivery service. What is a good basic folder structure to organize my HTML, CSS, JavaScript, and images?
+
+### Response Summary
+The AI recommended creating a simple and organized folder structure including css, js, and img directories. These folders help separate styling, functionality, and visual assets, making the project easier to manage and maintain.
+
+
+### Results: Folder Structure Created
+
+The following folders were created in the project:
+- css/
+- js/
+- img/
+
+
+### Terminal Commands  (I did not use these - Used IDE instead)
+
+The following command can be used to create the folder structure:
+
+**Windows cmd:** mkdir css js img
+
+## Part 3: The Homepage
+
+## TODO
+
