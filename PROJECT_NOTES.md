@@ -51,14 +51,17 @@ Organizing files into folders is important because it makes the project easier t
   - HTML, CSS, and JavaScript each have their own role, and separating them keeps the code clean and organized
 
 
-
 ## Reflection
 
-Parts 1: Using AI to learn about project structure helped provide a clear and organized explanation of how professional front-end projects are set up. It also made it easier to understand why organization is important for long-term development and collaboration.
+Part 1: Using AI to learn about project structure helped provide a clear and organized explanation of how professional front-end projects are set up. It also made it easier to understand why organization is important for long-term development and collaboration.
 
 Part 2: Creating the folder structure early helps ensure that the project remains organized as more files are added. It also aligns with best practices used in professional front-end development.
 
+Part 3: Building the homepage helped reinforce the use of semantic HTML elements and proper page structure. Using AI to generate and then review the code made it easier to understand how each section of the page is organized and why accessibility and structure are important.
 
+Part 4: Implementing the banner slideshow provided a better understanding of how JavaScript interacts with HTML elements. I learned how to use arrays, functions, and setInterval to create dynamic behavior on the page, as well as how to troubleshoot issues such as incorrect file paths and image formats.
+
+Part 5: Reviewing and refining the project helped improve overall code quality and understanding. Testing the site ensured that all features worked correctly, and reflecting on AI usage reinforced the importance of understanding the code rather than relying on generated solutions.
 
 ## AI Interaction Log
 
@@ -70,7 +73,6 @@ What is the standard folder structure for a front-end web development project? P
 ### Response Summary
 The AI explained that a typical front-end project includes folders such as css, js, and img. Each folder is used to separate different types of files: CSS for styling, JavaScript for functionality, and images for visual content. It also explained the role of the main HTML file as the entry point of the application.
 
----
 
 ### Prompt 2
 Why is it important to organize files this way rather than putting everything in one folder?
@@ -143,6 +145,7 @@ Students enjoying a sunny campus day - banner Image 1
 Morning coffee delights on rustic table - Banner Image 2
 Coffee delivery at college campus - Banner Image 3
 
+While implementing the banner slideshow, I initially used .jpg file extensions for the images. After switching to .png images, I updated both the HTML and JavaScript file paths to match the correct file type. This ensured the images loaded correctly and the slideshow function worked as expected.
 
 ### Prompt 8
 Can you explain how this banner slideshow JavaScript works step by step in simple terms?
@@ -161,3 +164,33 @@ The AI explained that the CSS controls the size, spacing, and presentation of th
 
 ### Results:
 Added the css rules.
+
+### Prompt 10
+Review my HTML and JavaScript for my Titan Coffee Run homepage. Suggest improvements for accessibility, SEO, and performance.
+
+### Response Summary
+The AI suggested several improvements to enhance accessibility, SEO, and performance. For accessibility, it recommended using more descriptive alt text for images and ensuring proper heading structure. For SEO, it suggested improving the meta description and using meaningful content that includes relevant keywords. For performance, it recommended minimizing unnecessary code, optimizing images, and ensuring scripts are loaded efficiently. These improvements help make the website more user-friendly, searchable, and efficient.
+
+### Results:
+I tested the project to make sure all features worked correctly, including the banner slideshow rotation. I also reviewed the HTML and JavaScript for structure, comments, and proper organization. Minor improvements related to accessibility and performance were noted for future updates.
+
+### Prompt 11
+What are three important things I should test to make sure my website works correctly?
+
+### Response Summary
+The AI suggested testing core functionality, usability, and compatibility. First, it is important to verify that all features work as expected, such as the banner slideshow rotating correctly. Second, usability testing ensures that navigation links, layout, and content are easy to use and understand. Third, compatibility testing ensures the website works across different browsers and screen sizes without errors.
+
+### Results:
+I tested the core functionality of the website, including the banner rotation, page layout, and navigation. All features worked as expected. Additional improvements suggested by AI, such as cross-browser testing and enhanced usability checks, can be implemented in future assignments as the project continues to grow.
+
+### Prompt 12
+What are the advantages and limitations of using AI tools for web development? What should developers still learn to do manually?
+
+### Response Summary
+The AI explained that one advantage of using AI tools in web development is that they can quickly generate code, provide explanations, and help troubleshoot problems. This can save time and make it easier to learn new concepts. However, a limitation is that AI-generated code is not always perfect and may require adjustments or debugging. Developers must still understand the code they use rather than relying on AI completely.
+
+The AI also emphasized that developers should still learn core skills manually, including HTML structure, CSS styling, JavaScript logic, and debugging techniques. Understanding these fundamentals allows developers to identify issues, customize solutions, and write better code independently. AI should be used as a tool to support learning, not replace it.
+
+## Development Notes
+
+This project was managed using a Git repository with incremental commits for each part of the assignment. This helped track progress, organize changes, and simulate a real-world development workflow.

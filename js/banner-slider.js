@@ -1,4 +1,4 @@
-// creat array of banner images
+// creat array of banner images 
 const bannerImages = [
   "img/banner-1.png",
   "img/banner-2.png",
