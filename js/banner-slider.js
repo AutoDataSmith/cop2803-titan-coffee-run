@@ -1,8 +1,8 @@
 // creat array of banner images
 const bannerImages = [
-  "img/banner-1.jpg",
-  "img/banner-2.jpg",
-  "img/banner-3.jpg"
+  "img/banner-1.png",
+  "img/banner-2.png",
+  "img/banner-3.png"
 ];
 
 // This variable keeps track of which image is currently showing.

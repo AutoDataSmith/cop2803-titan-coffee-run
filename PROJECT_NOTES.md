@@ -129,7 +129,7 @@ I need a simple banner slideshow for my coffee shop homepage using only HTML, CS
 The AI suggested a simple image rotator that uses JavaScript to switch the image source every 3 seconds. It explained that the HTML needs an image element, the CSS should size and style the banner area, and the JavaScript should store image paths in an array and cycle through them with a timer.
 
 ### Results:
-ToDo
+Added a new banner container to replace the placeholder.  Added a javascript file with the initial banner carusel code and linked it with a script tag in the homepage.  No images created yet.
 
 ### Prompt 7
 What kinds of banner images would work well for a college coffee delivery website? Give me five specific ideas.
@@ -138,4 +138,26 @@ What kinds of banner images would work well for a college coffee delivery websit
 The AI suggested banner ideas such as students walking on campus with coffee, a close-up of hot coffee drinks, a coffee delivery scene near a college building, a student study session with coffee, and a promotional image featuring coffee and pastries. These ideas fit the college audience and support the branding of the website.
 
 ### Results:
-ToDo
+I used AI to generate 3 specifc images:
+Students enjoying a sunny campus day - banner Image 1
+Morning coffee delights on rustic table - Banner Image 2
+Coffee delivery at college campus - Banner Image 3
+
+
+### Prompt 8
+Can you explain how this banner slideshow JavaScript works step by step in simple terms?
+
+### Response Summary
+The AI explained that the code stores the banner image file names in an array, keeps track of the current image with a counter, and uses a function to switch to the next image. It also explained that setInterval runs the function automatically every 3 seconds so the banner keeps rotating.
+
+### Results:
+I added a few comments in the javascript code based on the response from AI. 
+
+### Prompt 9
+Can you explain what the CSS for the banner is doing and why those styles are needed?
+
+### Response Summary
+The AI explained that the CSS controls the size, spacing, and presentation of the banner area. It makes the banner image scale to the width of the page section, keeps the image responsive, and adds a border and background so the slideshow stands out visually.
+
+### Results:
+Added the css rules.
