@@ -103,5 +103,14 @@ The following command can be used to create the folder structure:
 
 ## Part 3: The Homepage
 
-## TODO
+### Prompt 4
+I am creating the homepage for Titan Coffee Run, a coffee delivery service for St. Petersburg College. Can you generate a simple HTML5 homepage with a header, a section describing the service, a placeholder area for a banner slideshow, and a footer? Please use semantic HTML and accessibility best practices.
 
+### Response Summary
+The AI generated a basic homepage structure using semantic HTML5 elements such as header, nav, main, section, and footer. It included a title area for the company, a short description of the service, and a placeholder section for the future banner slideshow. The code also followed accessibility best practices by using headings, meaningful text, and a logical page structure.
+
+### Prompt 5
+What are three specific ways I could make this coffee delivery homepage more appealing to college students?
+
+### Response Summary
+The AI suggested adding student-friendly promotional language, highlighting convenience for busy class schedules, and using more engaging visuals such as coffee images or campus-themed banners. It also suggested stronger call-to-action text and a more modern visual style.
