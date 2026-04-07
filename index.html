@@ -8,16 +8,24 @@
   <link rel="stylesheet" href="css/style.css"> 
 </head>
 <body>
+    
+    <!-- Semantic tags like header, nav, main, and footer describe the purpose of each section.
+     his improves accessibility and helps screen readers understand the layout  -->
     <header>
-         <h1>Titan Coffee Run</h1>
-           <nav aria-label="Main navigation">
+    
+        <h1>Titan Coffee Run</h1>
+
+            <!-- The aria-label helps screen readers identify this as the main navigation area -->
+            <nav aria-label="Main navigation">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                 </ul>
             </nav>
+
     </header>
 
     <main>
+        
         <!-- This section introduces the purpose of the website and explains the coffee delivery service. -->
         <section id="about">
             <h2>Welcome to Titan Coffee Run</h2>
@@ -30,13 +38,18 @@
 
          <!-- This section is reserved for the rotating banner slideshow that will be added later. -->
         <section is="banner">
-            
+            <h2>Featured Promotions</h2>
+            <div class="banner-placeholder">
+                <p>Banner slideshow coming soon.</p>
+            </div>
         </section>
 
     </main>
 
     <footer>
+
         <p>&copy; 2026 Titan Coffee Run. Serving St. Petersburg College.</p>
+    
     </footer>
 </body>
 </html>

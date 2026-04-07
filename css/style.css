@@ -9,3 +9,30 @@ body {
 header, main, footer {
   padding: 20px;
 }
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+.banner-placeholder {
+  border: 2px dashed #6f4e37;
+  padding: 30px;
+  text-align: center;
+  background-color: white;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
