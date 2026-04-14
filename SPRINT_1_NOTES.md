@@ -14,3 +14,35 @@ Acceptance criteria define the conditions that must be met for a feature to be c
 
 ## Breaking Work into Tasks
 Breaking a user story into smaller tasks makes development easier to manage. It allows developers to focus on one piece at a time, test each part, and track progress more effectively. This also reduces errors and improves code quality.
+
+
+## User Story Analysis
+
+### Sprint 1 User Story Title: Apply for a Titan Coffee Run credit line
+
+**As a** potential customer, **I want to** apply for a Titan Coffee Run credit line **so I can** place orders for coffee.
+
+### Acceptance Criteria
+
+- The user can access the application form from the homepage.
+- The user can enter information into all required fields.
+- The user is notified if any fields are missing or incorrect.
+- The user is notified if the email fields do not match.
+- The user receives a message if they qualify for a credit line.
+- The user receives a message if they do not qualify for a credit line.
+
+### Technical Task Breakdown
+
+1. Add a navigation link to access the credit application page.
+2. Create the application form with all required input fields.
+3. Capture user input from the form using JavaScript.
+4. Validate that all required fields are filled out correctly.
+5. Check that email fields match and required fields are not empty.
+6. Validate specific formats (ZIP code, SSN, income).
+7. Display error messages next to invalid fields.
+8. Prevent form submission if validation fails.
+9. Determine credit qualification based on income.
+10. Display a success message if the user qualifies.
+11. Display a rejection message if the user does not qualify.
+12. Show a validation summary table with results.
+13. Add reset functionality to clear the form and messages.
