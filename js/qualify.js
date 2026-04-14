@@ -37,6 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function showResult(message, isSuccess) {
+        const resultsContainer = document.getElementById("resultsContainer");
+
+        resultsContainer.textContent = message;
+
+        if (isSuccess) {
+            resultsContainer.style.color = "green";
+        } else {
+            resultsContainer.style.color = "red";
+        }
+    }
+    
     // Listen for form submission
     applicationForm.addEventListener("submit", (event) => {
     
@@ -52,13 +64,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("email").value.trim();
     const confirmEmail = document.getElementById("confirmEmail").value.trim();
     const firstName = document.getElementById("firstName").value.trim();
-    
+    const lastName = document.getElementById("lastName").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const state = document.getElementById("state").value;
+    const zipCode = document.getElementById("zipCode").value.trim();
+    const grossIncome = document.getElementById("grossIncome").value.trim();
+    const ssnLast4 = document.getElementById("ssnLast4").value.trim();
+    const consentChecked = document.getElementById("consent").checked;
+
     let isValid = true;
 
     // Validate email field - required / cant be empty
     if (email === "") {
-    showError("emailError", "This field is required");
-    isValid = false;
+        showError("emailError", "This field is required");
+        isValid = false;
     }
 
       // Validate email fields - must match
@@ -73,19 +92,88 @@ document.addEventListener("DOMContentLoaded", () => {
         isValid = false;
     }
 
-    // Check validation result so far...
+     // Validate last name
+    if (lastName === "") {
+        showError("lastNameError", "This field is required");
+        isValid = false;
+    }
+
+    // Validate city
+    if (city === "") {
+        showError("cityError", "This field is required");
+        isValid = false;
+    }
+
+    // Validate state
+    if (state === "") {
+        showError("stateError", "This field is required");
+        isValid = false;
+    }
+
+    // Validate ZIP code
+    if (zipCode === "") {
+        showError("zipCodeError", "This field is required");
+        isValid = false;
+    } else if (!/^\d{5}$/.test(zipCode)) {
+        showError("zipCodeError", "ZIP code must be 5 digits");
+        isValid = false;
+    }
+
+    // Validate gross income
+    if (grossIncome === "") {
+        showError("grossIncomeError", "This field is required");
+        isValid = false;
+    } else if (Number(grossIncome) <= 0) {
+        showError("grossIncomeError", "Income must be a positive number");
+        isValid = false;
+    }
+
+    // Validate SSN last 4
+    if (ssnLast4 === "") {
+        showError("ssnLast4Error", "This field is required");
+        isValid = false;
+    } else if (!/^\d{4}$/.test(ssnLast4)) {
+        showError("ssnLast4Error", "SSN must be exactly 4 digits");
+        isValid = false;
+    }
+
+    // Validate consent checkbox
+    if (!consentChecked) {
+        showError("consentError", "You must agree before applying");
+        isValid = false;
+    }
+
+    // Check validation and if vaild, show results
     if (isValid) {
-        console.log("Basic validation passed.");
+        console.log("All validation checks passed.");
+
+        const incomeValue = Number(grossIncome);
+
+        if (incomeValue > 20000) {
+            showResult(
+            "Congratulations, you are qualified for a credit line. A credit card will be sent to you in the mail.",
+            true
+            );
+        } else {
+            showResult(
+            "We're sorry, you do not qualify for a credit line at this time.",
+            false
+            );
+        }
+
     } else {
         console.log("Validation failed.");
+
+        // Clear result if validation fails
+        showResult("", false);
     }
 
   });
 
   // TODO:
   // - Add event listener for form submission - COMPLETE
-  // - Validate form fields
-  // - Display error messages
+  // - Validate form fields - COMPLETE
+  // - Display error messages in results
   // - Determine credit qualification
   // - Display results to user
 
