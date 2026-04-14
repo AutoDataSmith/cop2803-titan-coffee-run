@@ -170,11 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-  // TODO:
+  // CRITICAL TASK LIST:
   // - Add event listener for form submission - COMPLETE
-  // - Validate form fields - COMPLETE
-  // - Display error messages in results
-  // - Determine credit qualification
-  // - Display results to user
+  // - Validate form fields - COMPLETE  
+  // - Determine credit qualification COMPLETE
+  // - Display results to user - COMPLETE
+  // - Display summary section for validation results
+  
 
 });
