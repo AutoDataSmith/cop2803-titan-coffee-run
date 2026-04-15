@@ -124,6 +124,41 @@ section {
   margin-top: 15px;
 }
 
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.summary-table th,
+.summary-table td {
+  border: 1px solid #999;
+  padding: 8px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.summary-table th {
+  background-color: #6f4e37;
+  color: white;
+}
+
+.status-valid {
+  color: green;
+  font-weight: bold;
+}
+
+.status-invalid {
+  color: red;
+  font-weight: bold;
+}
+
+/* this adds and alternating row color for readability */
+.summary-table tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
 footer {
   background-color: #333;
   color: white;
