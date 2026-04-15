@@ -61,6 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (existingTable) {
             existingTable.remove();
         }
+         const existingHeading = document.getElementById("validationSummaryHeading");
+        if (existingHeading) {
+            existingHeading.remove();
+        }
     }
 
     // This function creates a table of of the vaidation state
@@ -68,6 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
         clearValidationSummaryTable();  // dump previous table from DOM
 
         const resultsContainer = document.getElementById("resultsContainer");
+        
+        const heading = document.createElement("h3");
+        heading.textContent = "Validation Summary";
+        heading.id = "validationSummaryHeading";
 
         const table = document.createElement("table");
         table.id = "validationSummary";
@@ -105,254 +113,269 @@ document.addEventListener("DOMContentLoaded", () => {
         // Bubble up created elements to the DOM
         table.appendChild(thead);
         table.appendChild(tbody);
+        resultsContainer.appendChild(heading);
         resultsContainer.appendChild(table);
     }
 
     // Listen for form submission
     applicationForm.addEventListener("submit", (event) => {
     
-    // Stop the form from submitting and refreshing the page (Turns off browser html POST Default behavior)
-    event.preventDefault();
-    
-    console.log("Form submission started...");
+        // Stop the form from submitting and refreshing the page (Turns off browser html POST Default behavior)
+        event.preventDefault();
+        
+        console.log("Form submission started...");
 
-    // Clear previous errors
-    clearErrors();
+        // Clear previous errors
+        clearErrors();
 
-    // Get field values
-    const email = document.getElementById("email").value.trim();
-    const confirmEmail = document.getElementById("confirmEmail").value.trim();
-    const firstName = document.getElementById("firstName").value.trim();
-    const lastName = document.getElementById("lastName").value.trim();
-    const city = document.getElementById("city").value.trim();
-    const state = document.getElementById("state").value;
-    const zipCode = document.getElementById("zipCode").value.trim();
-    const grossIncome = document.getElementById("grossIncome").value.trim();
-    const ssnLast4 = document.getElementById("ssnLast4").value.trim();
-    const consentChecked = document.getElementById("consent").checked;
+        // Get field values
+        const email = document.getElementById("email").value.trim();
+        const confirmEmail = document.getElementById("confirmEmail").value.trim();
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const state = document.getElementById("state").value;
+        const zipCode = document.getElementById("zipCode").value.trim();
+        const grossIncome = document.getElementById("grossIncome").value.trim();
+        const ssnLast4 = document.getElementById("ssnLast4").value.trim();
+        const consentChecked = document.getElementById("consent").checked;
 
-    let isValid = true;
-    const summaryData = []; // array to hold validation results
+        let isValid = true;
+        const summaryData = []; // array to hold validation results
 
-    // Validate email field - required / cant be empty
-    if (email === "") {
-        showError("emailError", "This field is required");
-         summaryData.push({
-            field: "Email Address",
-            status: "Invalid",
-            details: "This field is required"
-        });
-        isValid = false;
-    } else if (email !== confirmEmail) {
-        showError("confirmEmailError", "This entry must equal the first entry");
-        summaryData.push({
-            field: "Re-enter Email Address",
-            status: "Invalid",
-            details: "This entry must equal the first entry"
-        });
-        isValid = false;
-    } else{
-        summaryData.push({
-            field: "Re-enter Email Address",
-            status: "Valid",
-            details: confirmEmail
-        });
-    }
-
-    // Validate first name - required / cant be empty
-    if (firstName === "") {
-        showError("firstNameError", "This field is required");
-        summaryData.push({
-            field: "First Name",
-            status: "Invalid",
-            details: "This field is required"
-        });
-        isValid = false;
-    } else{
-        summaryData.push({
-            field: "First Name",
-            status: "Valid",
-            details: firstName
-        });
-    }
-
-     // Validate last name
-    if (lastName === "") {
-        showError("lastNameError", "This field is required");
-        summaryData.push({
-            field: "Last Name",
-            status: "Invalid",
-            details: "This field is required"
-        });
-        isValid = false;
-    } else{
-        summaryData.push({
-            field: "Last Name",
-            status: "Valid",
-            details: lastName
-        });
-    }
-
-    // Validate city
-    if (city === "") {
-        showError("cityError", "This field is required");
-        summaryData.push({
-            field: "City",
-            status: "Invalid",
-            details: "This field is required"
-        });
-        isValid = false;
-    } else {
-        summaryData.push({
-            field: "City",
-            status: "Valid",
-            details: city
-        });
-    }
-
-    // Validate state
-    if (state === "") {
-        showError("stateError", "This field is required");
-        summaryData.push({
-            field: "State",
-            status: "Invalid",
-            details: "This field is required"
-        });
-        isValid = false;
-    } else {
-        summaryData.push({
-            field: "State",
-            status: "Valid",
-            details: state
-        });
-    }
-
-    // Validate ZIP code
-    if (zipCode === "") {
-        showError("zipCodeError", "This field is required");
-        summaryData.push({
-            field: "ZIP Code",
-            status: "Invalid",
-            details: "This field is required"
-        });
-        isValid = false;
-    } else if (!/^\d{5}$/.test(zipCode)) {
-        showError("zipCodeError", "ZIP code must be 5 digits");
-        summaryData.push({
-            field: "ZIP Code",
-            status: "Invalid",
-            details: "ZIP code must be 5 digits"
-        });
-        isValid = false;
-    } else {
-        summaryData.push({
-            field: "ZIP Code",
-            status: "Valid",
-            details: zipCode
-        });
-    }
-
-    // Validate gross income
-    if (grossIncome === "") {
-        showError("grossIncomeError", "This field is required");
-        summaryData.push({
-            field: "Gross Income",
-            status: "Invalid",
-            details: "This field is required"
-        });
-        isValid = false;
-    } else if (Number(grossIncome) <= 0) {
-        showError("grossIncomeError", "Income must be a positive number");
-        summaryData.push({
-            field: "Gross Income",
-            status: "Invalid",
-            details: "Income must be a positive number"
-        });
-        isValid = false;
-    } else {
-        summaryData.push({
-            field: "Gross Income",
-            status: "Valid",
-            details: grossIncome
-        });
-    }
-
-    // Validate SSN last 4
-    if (ssnLast4 === "") {
-        showError("ssnLast4Error", "This field is required");
-        summaryData.push({
-            field: "Last 4 Digits of SSN",
-            status: "Invalid",
-            details: "This field is required"
-        });
-        isValid = false;
-    } else if (!/^\d{4}$/.test(ssnLast4)) {
-        showError("ssnLast4Error", "SSN must be exactly 4 digits");
-        summaryData.push({
-            field: "Last 4 Digits of SSN",
-            status: "Invalid",
-            details: "SSN must be exactly 4 digits"
-        });
-        isValid = false;
-    } else {
-        summaryData.push({
-            field: "Last 4 Digits of SSN",
-            status: "Valid",
-            details: ssnLast4
-        });
-    }
-
-    // Validate consent checkbox
-    if (!consentChecked) {
-        showError("consentError", "You must agree before applying");
-        summaryData.push({
-            field: "Consent",
-            status: "Invalid",
-            details: "You must agree before applying"
-        });
-        isValid = false;
-    } else {
-        summaryData.push({
-            field: "Consent",
-            status: "Valid",
-            details: "Checked"
-        });
-    }
-
-    // Check validation and if vaild, show results
-    if (isValid) {
-        console.log("All validation checks passed.");
-        clearValidationSummaryTable();
-
-        const incomeValue = Number(grossIncome);
-
-        if (incomeValue > 20000) {
-            showResult(
-            "Congratulations, you are qualified for a credit line. A credit card will be sent to you in the mail.",
-            true
-            );
-        } else {
-            showResult(
-            "We're sorry, you do not qualify for a credit line at this time.",
-            false
-            );
+        // Validate email field - required / cant be empty
+        if (email === "") {
+            showError("emailError", "This field is required");
+            summaryData.push({
+                field: "Email Address",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else if (email !== confirmEmail) {
+            showError("confirmEmailError", "This entry must equal the first entry");
+            summaryData.push({
+                field: "Re-enter Email Address",
+                status: "Invalid",
+                details: "This entry must equal the first entry"
+            });
+            isValid = false;
+        } else{
+            summaryData.push({
+                field: "Re-enter Email Address",
+                status: "Valid",
+                details: confirmEmail
+            });
         }
 
-    } else {
-        console.log("Validation failed.");
-        // Clear result if validation fails and show validation status table
-        showResult("", false);
-        displayValidationSummaryTable(summaryData);
-    }
+        // Validate first name - required / cant be empty
+        if (firstName === "") {
+            showError("firstNameError", "This field is required");
+            summaryData.push({
+                field: "First Name",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else{
+            summaryData.push({
+                field: "First Name",
+                status: "Valid",
+                details: firstName
+            });
+        }
 
-  });
+        // Validate last name
+        if (lastName === "") {
+            showError("lastNameError", "This field is required");
+            summaryData.push({
+                field: "Last Name",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else{
+            summaryData.push({
+                field: "Last Name",
+                status: "Valid",
+                details: lastName
+            });
+        }
+
+        // Validate city
+        if (city === "") {
+            showError("cityError", "This field is required");
+            summaryData.push({
+                field: "City",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else {
+            summaryData.push({
+                field: "City",
+                status: "Valid",
+                details: city
+            });
+        }
+
+        // Validate state
+        if (state === "") {
+            showError("stateError", "This field is required");
+            summaryData.push({
+                field: "State",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else {
+            summaryData.push({
+                field: "State",
+                status: "Valid",
+                details: state
+            });
+        }
+
+        // Validate ZIP code
+        if (zipCode === "") {
+            showError("zipCodeError", "This field is required");
+            summaryData.push({
+                field: "ZIP Code",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else if (!/^\d{5}$/.test(zipCode)) {
+            showError("zipCodeError", "ZIP code must be 5 digits");
+            summaryData.push({
+                field: "ZIP Code",
+                status: "Invalid",
+                details: "ZIP code must be 5 digits"
+            });
+            isValid = false;
+        } else {
+            summaryData.push({
+                field: "ZIP Code",
+                status: "Valid",
+                details: zipCode
+            });
+        }
+
+        // Validate gross income
+        if (grossIncome === "") {
+            showError("grossIncomeError", "This field is required");
+            summaryData.push({
+                field: "Gross Income",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else if (Number(grossIncome) <= 0) {
+            showError("grossIncomeError", "Income must be a positive number");
+            summaryData.push({
+                field: "Gross Income",
+                status: "Invalid",
+                details: "Income must be a positive number"
+            });
+            isValid = false;
+        } else {
+            summaryData.push({
+                field: "Gross Income",
+                status: "Valid",
+                details: grossIncome
+            });
+        }
+
+        // Validate SSN last 4
+        if (ssnLast4 === "") {
+            showError("ssnLast4Error", "This field is required");
+            summaryData.push({
+                field: "Last 4 Digits of SSN",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else if (!/^\d{4}$/.test(ssnLast4)) {
+            showError("ssnLast4Error", "SSN must be exactly 4 digits");
+            summaryData.push({
+                field: "Last 4 Digits of SSN",
+                status: "Invalid",
+                details: "SSN must be exactly 4 digits"
+            });
+            isValid = false;
+        } else {
+            summaryData.push({
+                field: "Last 4 Digits of SSN",
+                status: "Valid",
+                details: ssnLast4
+            });
+        }
+
+        // Validate consent checkbox
+        if (!consentChecked) {
+            showError("consentError", "You must agree before applying");
+            summaryData.push({
+                field: "Consent",
+                status: "Invalid",
+                details: "You must agree before applying"
+            });
+            isValid = false;
+        } else {
+            summaryData.push({
+                field: "Consent",
+                status: "Valid",
+                details: "Checked"
+            });
+        }
+
+        // Check validation and if vaild, show results
+        if (isValid) {
+            console.log("All validation checks passed.");
+            clearValidationSummaryTable();
+
+            const incomeValue = Number(grossIncome);
+
+            if (incomeValue > 20000) {
+                showResult(
+                "Congratulations, you are qualified for a credit line. A credit card will be sent to you in the mail.",
+                true
+                );
+            } else {
+                showResult(
+                "We're sorry, you do not qualify for a credit line at this time.",
+                false
+                );
+            }
+
+        } else {
+            console.log("Validation failed.");
+            // Clear result if validation fails and show validation status table
+            showResult("", false);
+            displayValidationSummaryTable(summaryData);
+        }
+
+    });
+
+    resetButton.addEventListener("click", () => {
+        console.log("Reset button clicked.");
+
+        // Clear all inline error messages
+        clearErrors();
+
+        // Clear any success or rejection message
+        showResult("", false);
+
+        // Remove the validation summary table
+        clearValidationSummaryTable();
+    });
 
   // CRITICAL TASK LIST:
-  // - Add event listener for form submission - COMPLETE
+  // - Add event listener for the form submission - COMPLETE
   // - Validate form fields - COMPLETE  
   // - Determine credit qualification COMPLETE
   // - Display results to user - COMPLETE
   // - Display summary section for validation results - COMPLETE
+  // - Add Event Listener for the reset button  - COMPLETE
 
 
 });
