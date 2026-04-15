@@ -50,6 +50,7 @@ Breaking a user story into smaller tasks makes development easier to manage. It 
 ## Possible Future Improvement: Income Tiers
 
 If the credit application used income tiers instead of a single approval threshold, the logic could be structured with an if-else if chain or a separate function. For example, applicants with income from $20,000 to $39,999 could receive a $500 credit line, applicants from $40,000 to $59,999 could receive a $1,000 credit line, and higher income ranges could qualify for larger amounts.
+This was not implemented in Assignment 3 because the current requirement only needs approval or rejection based on income.
 
 ## Code Review Improvements
 

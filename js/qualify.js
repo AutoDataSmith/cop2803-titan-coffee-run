@@ -14,16 +14,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // Get references to important form elements 
-    const applicationForm = document.getElementById("creditApplicationForm");
-    // Get references to important form elements 
-    const applyButton = document.getElementById("applyButton");
+    const applicationForm = document.getElementById("creditApplicationForm");   
     const resetButton = document.getElementById("resetButton");
-
-    // Check that the form and buttons were found successfully
-    console.log("Form found:", applicationForm);
-    console.log("Apply button found:", applyButton);
-    console.log("Reset button found:", resetButton);
-
+    
     // Helper function to display an error message
     function showError(elementId, message) {
         document.getElementById(elementId).textContent = message;
@@ -69,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // This function creates a table of of the vaidation state
     function displayValidationSummaryTable(summaryData) {
-        clearValidationSummaryTable();  // dump previous table from DOM
+        clearValidationSummaryTable();  // remove previous table from DOM
 
         const resultsContainer = document.getElementById("resultsContainer");
         
@@ -143,7 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let isValid = true;
         const summaryData = []; // array to hold validation results
 
-        // Validate email field - required / cant be empty
+        // NOTE email addresses are only beinf tested for equality and is empty. Not if they are in a preoper email format
+        //  That validation test can be done at a later time
+        // Validate email field - required / cant be empty       
         if (email === "") {
             showError("emailError", "This field is required");
             summaryData.push({
@@ -152,7 +147,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 details: "This field is required"
             });
             isValid = false;
-        } else if (email !== confirmEmail) {
+        } else {
+            summaryData.push({
+                field: "Email Address",
+                status: "Valid",
+                details: email
+            });
+        }
+
+        // Validate re-enter email address - Must equal
+        if (confirmEmail === "") {
+            showError("confirmEmailError", "This field is required");
+            summaryData.push({
+                field: "Re-enter Email Address",
+                status: "Invalid",
+                details: "This field is required"
+            });
+            isValid = false;
+        } else if (email !== "" && email !== confirmEmail) {
             showError("confirmEmailError", "This entry must equal the first entry");
             summaryData.push({
                 field: "Re-enter Email Address",
@@ -160,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 details: "This entry must equal the first entry"
             });
             isValid = false;
-        } else{
+        } else {
             summaryData.push({
                 field: "Re-enter Email Address",
                 status: "Valid",
@@ -356,8 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    resetButton.addEventListener("click", () => {
-        console.log("Reset button clicked.");
+    resetButton.addEventListener("click", () => {       
 
         // Clear all inline error messages
         clearErrors();
