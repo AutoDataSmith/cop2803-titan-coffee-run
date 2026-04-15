@@ -50,3 +50,32 @@ Breaking a user story into smaller tasks makes development easier to manage. It 
 ## Possible Future Improvement: Income Tiers
 
 If the credit application used income tiers instead of a single approval threshold, the logic could be structured with an if-else if chain or a separate function. For example, applicants with income from $20,000 to $39,999 could receive a $500 credit line, applicants from $40,000 to $59,999 could receive a $1,000 credit line, and higher income ranges could qualify for larger amounts.
+
+## Code Review Improvements
+
+During development, I reviewed and refined the code based on AI suggestions and testing. The following improvements were made:
+
+1. Improved Email Validation Logic  
+Originally, the code only checked if the email fields matched. I updated the logic to first check if each email field was empty before comparing them. This prevents two empty fields from incorrectly passing validation.
+
+2. Refined Result Display Function  
+The showResult function was updated to avoid applying color styling when no message is displayed. This prevented unintended styling (such as turning the validation summary table red) and improved separation between result messages and other UI elements.
+
+3. Enhanced Validation Summary Table Styling  
+Initially, entire table rows were styled with background colors. I changed this to only color the “Valid” and “Invalid” status text. This improved readability and made the table less visually overwhelming.
+
+4. Added Validation Summary Heading  
+A heading (“Validation Summary”) was added above the table to provide context for users. This improves usability and makes the interface clearer, especially when multiple validation errors are displayed.
+
+5. Modularized Helper Functions  
+Validation-related behaviors such as clearing errors, displaying results, and rendering the summary table were separated into individual functions. This improved code organization, readability, and maintainability.
+
+## Reflection
+
+AI was used throughout this assignment to help break down tasks, generate code examples, and explain JavaScript concepts such as event handling and validation. It was especially helpful for structuring the validation logic and understanding how to dynamically create elements like the summary table.
+
+One key learning takeaway was how form validation works step by step, including capturing user input, checking conditions, and displaying feedback. I also gained a better understanding of organizing code into functions to avoid repetition.
+
+I made sure to understand the code by testing each step and modifying AI suggestions as needed. This approach helped reinforce my understanding rather than relying on copy-paste solutions.
+
+Overall, using AI as a development partner made the process more efficient while still requiring me to think critically about how the application works.
