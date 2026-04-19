@@ -50,11 +50,13 @@ export class StorageManager {
     }
 
     findUserByEmail(email) {
-        
+
         const users = this.getUsers();
 
+        const normalizedEmail = email.trim().toLowerCase();
+
         const matchingUser = users.find((user) => {
-            return user.email === email;
+            return user.email.toLowerCase() === normalizedEmail;
         });
 
         return matchingUser || null;
