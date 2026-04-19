@@ -25,12 +25,48 @@ export class FormValidator {
         return isChecked;
     }
 
+    getPasswordStrengthMessage(password) {
+        const trimmedPassword = password.trim();
+
+        if (trimmedPassword === "") {
+            return "";
+        }
+
+        if (trimmedPassword.length < 6) {
+            return "Weak password";
+        }
+
+        if (
+            /[A-Z]/.test(trimmedPassword) &&
+            /\d/.test(trimmedPassword) &&
+            trimmedPassword.length >= 8
+        ) {
+            return "Strong password";
+        }
+
+        return "Medium password";
+    }
+
+    isFormValid(firstName, lastName, email, password, confirmPassword, termsChecked, emailIsAvailable) {
+        return (
+            this.validateRequired(firstName) &&
+            this.validateRequired(lastName) &&
+            this.validateEmail(email) &&
+            emailIsAvailable &&
+            this.validatePassword(password) &&
+            this.validatePasswordMatch(password, confirmPassword) &&
+            this.validateCheckbox(termsChecked)
+        );
+    }
+
     showError(elementId, message) {
         document.getElementById(elementId).textContent = message;
+        element.classList.add("active");
     }
 
     clearError(elementId) {
         document.getElementById(elementId).textContent = "";
+        element.classList.remove("active");
     }
 
     clearAllErrors() {
@@ -39,6 +75,7 @@ export class FormValidator {
         
         errorElements.forEach((element) => {
             element.textContent = "";
+            element.classList.remove("active");
         });
     }
 

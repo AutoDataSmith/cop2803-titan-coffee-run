@@ -108,9 +108,29 @@ section {
   font-size: 0.9rem;
   min-height: 1.2em;
   margin-top: 4px;
-  color: #555;
 }
 
+/* Password strength colors */
+.helper-message.weak {
+  color: orange;
+}
+
+.helper-message.medium {
+  color: goldenrod;
+}
+
+.helper-message.strong {
+  color: green;
+}
+
+/* Password match feedback */
+.helper-message.match {
+  color: green;
+}
+
+.helper-message.no-match {
+  color: #b00020; /* same as error */
+}
 
 .button-row {
   display: flex;
@@ -141,9 +161,12 @@ section {
 
 .error-message {
   color: #b00020;
-  font-size: 0.9rem;
-  min-height: 1.2em;
+  font-size: 0.9rem;  
   margin-top: 4px;
+  display: none;
+}
+.error-message.active {
+  display: block;
 }
 
 #resultsContainer {
