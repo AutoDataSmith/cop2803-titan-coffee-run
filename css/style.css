@@ -1,3 +1,7 @@
+
+/* Currently, These rules are not designed as mobiile-first yet. 
+But an upgrade is planned before the class is complete */
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -16,11 +20,18 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* these help with mobile viewports - not a full hamburger , but effective for now*/
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 nav ul {
   display: flex;
-  gap: 20px;
+
+  /* these help with mobile viewports - not a full hamburger , but effective for now*/
+  flex-wrap: wrap;
+  gap: 12px;
+  
   list-style: none;
   padding: 0;
   margin: 0;
@@ -169,5 +180,18 @@ footer {
   background-color: #333;
   color: white;
   text-align: center;
+}
+
+/* these help with mobile viewports - not a full hamburger , but effective for now*/
+@media (max-width: 700px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
 
