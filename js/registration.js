@@ -2,6 +2,12 @@ import { User } from "./modules/User.js";
 import { StorageManager } from "./modules/StorageManager.js";
 import { FormValidator } from "./modules/FormValidator.js";
 
+// Validation is implemented in two layers:
+// 1. Real-time validation for user experience (prevents invalid submission)
+// 2. Submit-time validation as a defensive fallback
+// Some helper messages may rarely appear due to the disabled submit button,
+// but are retained to ensure robustness and completeness
+
 document.addEventListener("DOMContentLoaded", () => {
     const registrationForm = document.getElementById("registrationForm");
     const registerButton = document.getElementById("registerButton");
@@ -21,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     console.log("Registration page ready.");    
 
+    
+
     function updateFormState() {
         const firstName = firstNameInput.value.trim();
         const lastName = lastNameInput.value.trim();
@@ -32,16 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
         let emailIsAvailable = true;
 
         if (email === "") {
-            formValidator.clearError("emailError");
+            formValidator.clearError("emailHelper");
             emailIsAvailable = false;
         } else if (!formValidator.validateEmail(email)) {
-            formValidator.showError("emailError", "Enter a valid email address");
+            formValidator.showError("emailHelper", "Enter a valid email address");
             emailIsAvailable = false;
         } else if (storageManager.findUserByEmail(email)) {
-            formValidator.showError("emailError", "This email is already registered");
+            formValidator.showError("emailHelper", "This email is already registered");
             emailIsAvailable = false;
         } else {
-            formValidator.clearError("emailError");
+            formValidator.clearError("emailHelper");
         }
 
        const strengthMessage = formValidator.getPasswordStrengthMessage(password);
@@ -105,41 +113,41 @@ document.addEventListener("DOMContentLoaded", () => {
         let isValid = true;
 
         if (!formValidator.validateRequired(firstName)) {
-            formValidator.showError("firstNameError", "This field is required");
+            formValidator.showError("firstNameHelper", "This field is required");
             isValid = false;
         }
 
         if (!formValidator.validateRequired(lastName)) {
-            formValidator.showError("lastNameError", "This field is required");
+            formValidator.showError("lastNameHelper", "This field is required");
             isValid = false;
         }
 
         if (!formValidator.validateRequired(email)) {
-            formValidator.showError("emailError", "This field is required");
+            formValidator.showError("emailHelper", "This field is required");
             isValid = false;
         } else if (!formValidator.validateEmail(email)) {
-            formValidator.showError("emailError", "Enter a valid email address");
+            formValidator.showError("emailHelper", "Enter a valid email address");
             isValid = false;
         } else if (storageManager.findUserByEmail(email)) {
-            formValidator.showError("emailError", "This email is already registered");
+            formValidator.showError("emailHelper", "This email is already registered");
             isValid = false;
         }
 
         if (!formValidator.validatePassword(password)) {
-            formValidator.showError("passwordError", "This field is required");
+            formValidator.showError("passwordHelper", "This field is required");
             isValid = false;
         }
 
         if (!formValidator.validateRequired(confirmPassword)) {
-            formValidator.showError("confirmPasswordError", "This field is required");
+            formValidator.showError("confirmPasswordHelper", "This field is required");
             isValid = false;
         } else if (!formValidator.validatePasswordMatch(password, confirmPassword)) {
-            formValidator.showError("confirmPasswordError", "Passwords must match");
+            formValidator.showError("confirmPasswordHelper", "Passwords must match");
             isValid = false;
         }
 
         if (!formValidator.validateCheckbox(termsChecked)) {
-            formValidator.showError("termsError", "You must agree to the terms");
+            formValidator.showError("termsHelper", "You must agree to the terms");
             isValid = false;
         }
 

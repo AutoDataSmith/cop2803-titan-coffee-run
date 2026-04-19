@@ -119,7 +119,7 @@ section {
   color: goldenrod;
 }
 
-.helper-message.strong {
+.helper-message.strong, .helper-message.valid {
   color: green;
 }
 
@@ -128,8 +128,8 @@ section {
   color: green;
 }
 
-.helper-message.no-match {
-  color: #b00020; /* same as error */
+.helper-message.no-match, .helper-message.error {
+  color: #b00020; 
 }
 
 .button-row {

@@ -8,6 +8,10 @@ export class FormValidator {
         return value.trim() !== "";
     }
 
+    validateMinLength(value, minLength) {
+        return value.trim().length >= minLength;
+    }
+
     validateEmail(email) {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailPattern.test(email.trim());
@@ -60,18 +64,20 @@ export class FormValidator {
     }
 
     showError(elementId, message) {
-        document.getElementById(elementId).textContent = message;
+          const element = document.getElementById(elementId);
+        element.textContent = message;
         element.classList.add("active");
     }
 
     clearError(elementId) {
-        document.getElementById(elementId).textContent = "";
+        const element = document.getElementById(elementId);
+        element.textContent = "";
         element.classList.remove("active");
     }
 
     clearAllErrors() {
 
-        const errorElements = document.querySelectorAll(".error-message");
+        const errorElements = document.querySelectorAll(".helper-message");
         
         errorElements.forEach((element) => {
             element.textContent = "";
