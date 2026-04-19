@@ -27,22 +27,49 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!formValidator.validateRequired(firstName)) {
             formValidator.showError("firstNameError", "This field is required");
             isValid = false;
+            
         }
 
         if (!formValidator.validateRequired(lastName)) {
             formValidator.showError("lastNameError", "This field is required");
             isValid = false;
+
         }
 
         if (!formValidator.validateRequired(email)) {
             formValidator.showError("emailError", "This field is required");
             isValid = false;
+
         } else if (!formValidator.validateEmail(email)) {
             formValidator.showError("emailError", "Enter a valid email address");
             isValid = false;
+
         } else if (storageManager.findUserByEmail(email)) {
             formValidator.showError("emailError", "This email is already registered");
             isValid = false;
+
+        }
+
+         if (!formValidator.validatePassword(password)) {
+            formValidator.showError("passwordError", "This field is required");
+            isValid = false;
+        }
+
+        if (!formValidator.validateRequired(confirmPassword)) {
+            formValidator.showError("confirmPasswordError", "This field is required");
+            isValid = false;
+
+        } else if (!formValidator.validatePasswordMatch(password, confirmPassword)) {
+            formValidator.showError("confirmPasswordError", "Passwords must match");
+            isValid = false;
+
+        }
+
+        if (!formValidator.validateCheckbox(termsChecked)) {
+            
+            formValidator.showError("termsError", "You must agree to the terms");
+            isValid = false;
+
         }
 
         if (!isValid) {
