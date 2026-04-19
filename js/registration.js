@@ -8,18 +8,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const storageManager = new StorageManager();
     const formValidator = new FormValidator(registrationForm);
 
-    console.log("Registration page ready.");
+    console.log("Registration page ready.");    
 
-    const testUser = new User("Ken", "Smith", "ken@test.com", "Pass1234");
+    registrationForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-    const wasAdded = storageManager.addUser(testUser);
-    console.log("User added:", wasAdded);  
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const termsChecked = document.getElementById("terms").checked;
 
-    console.log("Users after save:", storageManager.getUsers());
+        console.log("Form submitted.");
+        console.log("Confirm Password value:", confirmPassword);
+        console.log("Terms checked:", termsChecked);
 
-    console.log(storageManager.findUserByEmail("ken@test.com"));
-    console.log(storageManager.findUserByEmail("Ken@Test.com")); // should still work
-    console.log(storageManager.findUserByEmail("missing@test.com")); // Should Fail    
+        const newUser = new User(firstName, lastName, email, password);
+        console.log("New user object:", newUser);
+
+        const wasAdded = storageManager.addUser(newUser);
+
+        if (wasAdded) {
+            console.log("User added successfully.");
+        } else {
+            console.log("Duplicate email. User was not added.");
+        }
+
+    });
 
 
 });
