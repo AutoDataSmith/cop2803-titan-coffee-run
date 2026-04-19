@@ -14,8 +14,24 @@ export class StorageManager {
         }
 
         try {
+
             const usersArray = JSON.parse(usersJSON);
             return usersArray;
+
+        /*
+            Note:
+            A more object-oriented approach would convert stored data back into User instances:
+
+                const users = storageManager.getUsers().map(userData =>
+                User.fromJSON(userData)
+                );
+
+            This would restore class methods and behavior.
+
+            For this implementation, we are using plain objects from JSON.parse(),
+            since only the data is needed and it keeps the code simpler.
+        */
+
         } catch (error) {
             console.error("Error parsing users from localStorage:", error);
             return [];
@@ -24,15 +40,24 @@ export class StorageManager {
 
     saveUsers(users) {
          try {
+            
             const usersJSON = JSON.stringify(users);
             localStorage.setItem(this.storageKey, usersJSON);
+
         } catch (error) {
             console.error("Error saving users to localStorage:", error);
         }
     }
 
     findUserByEmail(email) {
-        return null;
+        
+        const users = this.getUsers();
+
+        const matchingUser = users.find((user) => {
+            return user.email === email;
+        });
+
+        return matchingUser || null;
     }
 
     addUser(user) {
