@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create a Titan Coffee Run account.">
+  <title>Register | Titan Coffee Run</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Titan Coffee Run</h1>
+    
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="apply.html">Apply for Credit</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Create Your Account</h2>
+      <p>Please complete the form below to register for Titan Coffee Run.</p>
+
+      <form id="registrationForm" novalidate>
+        <div class="form-row">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="First name">
+          <span class="error-message" id="firstNameError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" placeholder="Last name">
+          <span class="error-message" id="lastNameError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="name@example.com">
+          <span class="error-message" id="emailError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter password">
+          <span class="error-message" id="passwordError"></span>
+          <div id="passwordStrength" class="helper-message"></div>
+        </div>
+
+        <div class="form-row">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password">
+          <span class="error-message" id="confirmPasswordError"></span>
+          <div id="passwordMatch" class="helper-message"></div>
+        </div>
+
+        <div class="form-row checkbox-row">
+          <input type="checkbox" id="terms" name="terms">
+          <label for="terms">
+            I agree to the Titan Coffee Run Terms and Conditions.
+          </label>
+        </div>
+        <span class="error-message" id="termsError"></span>
+
+        <div class="button-row">
+          <button type="submit" id="registerButton" disabled>Register</button>
+        </div>
+      </form>
+
+      <div id="resultsContainer"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Titan Coffee Run. Serving St. Petersburg College.</p>
+  </footer>
+
+</body>
+</html>
