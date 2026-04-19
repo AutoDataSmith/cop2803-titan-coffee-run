@@ -14,11 +14,15 @@ export class FormValidator {
     }
 
     validatePassword(password) {
-        return true;
+        return password.trim() !== "";
     }
 
     validatePasswordMatch(password, confirmPassword) {
         return password === confirmPassword;
+    }
+
+      validateCheckbox(isChecked) {
+        return isChecked;
     }
 
     showError(elementId, message) {
@@ -30,7 +34,7 @@ export class FormValidator {
     }
 
     clearAllErrors() {
-        
+
         const errorElements = document.querySelectorAll(".error-message");
         
         errorElements.forEach((element) => {
