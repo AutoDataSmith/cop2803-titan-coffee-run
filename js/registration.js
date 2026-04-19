@@ -12,11 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const testUser = new User("Ken", "Smith", "ken@test.com", "Pass1234");
 
-    const users = storageManager.getUsers();
-    users.push(testUser.toJSON());
-
-    storageManager.saveUsers(users);
+    const wasAdded = storageManager.addUser(testUser);
+    console.log("User added:", wasAdded);  
 
     console.log("Users after save:", storageManager.getUsers());
+
+    console.log(storageManager.findUserByEmail("ken@test.com"));
+    console.log(storageManager.findUserByEmail("Ken@Test.com")); // should still work
+    console.log(storageManager.findUserByEmail("missing@test.com")); // Should Fail    
+
 
 });

@@ -62,8 +62,24 @@ export class StorageManager {
         return matchingUser || null;
     }
 
+    // Add a new user to localStorage.
+    // Returns true if the user was added, or false if the email already exists.
     addUser(user) {
-        // Will add a new user in a later step
+        
+        const existingUser = this.findUserByEmail(user.email);
+
+        if (existingUser) {
+            return false;
+        }
+
+        const users = this.getUsers();
+
+        user.email = user.email.trim().toLowerCase();
+
+        users.push(user.toJSON());
+        this.saveUsers(users);
+
+        return true;
     }
 
 }
