@@ -1,6 +1,9 @@
 export class FormValidator {
     constructor(formElement) {
     this.formElement = formElement;
+
+    console.log("FormValidator initialized...");
+
     }
 
     validateRequired(value) {

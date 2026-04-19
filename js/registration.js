@@ -10,4 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Registration page ready.");
 
+    const testUser = new User("Ken", "Smith", "ken@test.com", "Pass1234");
+
+    const users = storageManager.getUsers();
+    users.push(testUser.toJSON());
+
+    storageManager.saveUsers(users);
+
+    console.log("Users after save:", storageManager.getUsers());
+
 });
