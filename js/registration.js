@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     registrationForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
+        formValidator.clearAllErrors();
+
         const firstName = document.getElementById("firstName").value.trim();
         const lastName = document.getElementById("lastName").value.trim();
         const email = document.getElementById("email").value.trim();
@@ -20,13 +22,36 @@ document.addEventListener("DOMContentLoaded", () => {
         const confirmPassword = document.getElementById("confirmPassword").value;
         const termsChecked = document.getElementById("terms").checked;
 
-        console.log("Form submitted.");
-        console.log("Confirm Password value:", confirmPassword);
-        console.log("Terms checked:", termsChecked);
+        let isValid = true;
 
-        const newUser = new User(firstName, lastName, email, password);
-        console.log("New user object:", newUser);
+        if (!formValidator.validateRequired(firstName)) {
+            formValidator.showError("firstNameError", "This field is required");
+            isValid = false;
+        }
 
+        if (!formValidator.validateRequired(lastName)) {
+            formValidator.showError("lastNameError", "This field is required");
+            isValid = false;
+        }
+
+        if (!formValidator.validateRequired(email)) {
+            formValidator.showError("emailError", "This field is required");
+            isValid = false;
+        } else if (!formValidator.validateEmail(email)) {
+            formValidator.showError("emailError", "Enter a valid email address");
+            isValid = false;
+        } else if (storageManager.findUserByEmail(email)) {
+            formValidator.showError("emailError", "This email is already registered");
+            isValid = false;
+        }
+
+        if (!isValid) {
+            console.log("Validation failed.");
+            return;
+        }
+    
+
+        const newUser = new User(firstName, lastName, email, password); 
         const wasAdded = storageManager.addUser(newUser);
 
         if (wasAdded) {
@@ -36,6 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     });
-
 
 });

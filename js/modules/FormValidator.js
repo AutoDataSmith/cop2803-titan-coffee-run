@@ -1,9 +1,7 @@
 export class FormValidator {
     constructor(formElement) {
-    this.formElement = formElement;
-
-    console.log("FormValidator initialized...");
-
+        this.formElement = formElement;
+        console.log("FormValidator initialized...");
     }
 
     validateRequired(value) {
@@ -11,7 +9,8 @@ export class FormValidator {
     }
 
     validateEmail(email) {
-        return true;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email.trim());
     }
 
     validatePassword(password) {
@@ -20,6 +19,23 @@ export class FormValidator {
 
     validatePasswordMatch(password, confirmPassword) {
         return password === confirmPassword;
+    }
+
+    showError(elementId, message) {
+        document.getElementById(elementId).textContent = message;
+    }
+
+    clearError(elementId) {
+        document.getElementById(elementId).textContent = "";
+    }
+
+    clearAllErrors() {
+        
+        const errorElements = document.querySelectorAll(".error-message");
+        
+        errorElements.forEach((element) => {
+            element.textContent = "";
+        });
     }
 
 }
