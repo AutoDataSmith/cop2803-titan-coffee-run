@@ -91,8 +91,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    function updateFirstNameFeedback() {
+        const firstName = firstNameInput.value.trim();
+
+        if (firstName === "") {
+            formValidator.showError("firstNameHelper", "Please enter at least 2 characters");
+        } else if (!formValidator.validateMinLength(firstName, 2)) {
+            formValidator.showError("firstNameHelper", "Please enter at least 2 characters");
+        } else {
+            formValidator.showValid("firstNameHelper", "Looks good!");
+        }
+    }
+
+    function updateLastNameFeedback() {
+        const lastName = lastNameInput.value.trim();
+
+        if (lastName === "") {
+            formValidator.showError("lastNameHelper", "Please enter at least 2 characters");
+        } else if (!formValidator.validateMinLength(lastName, 2)) {
+            formValidator.showError("lastNameHelper", "Please enter at least 2 characters");
+        } else {
+            formValidator.showValid("lastNameHelper", "Looks good!");
+        }
+    }
+
     firstNameInput.addEventListener("input", updateFormState);
     lastNameInput.addEventListener("input", updateFormState);
+
+    firstNameInput.addEventListener("blur", updateFirstNameFeedback);
+    lastNameInput.addEventListener("blur", updateLastNameFeedback);
+
     emailInput.addEventListener("input", updateFormState);
     passwordInput.addEventListener("input", updateFormState);
     confirmPasswordInput.addEventListener("input", updateFormState);

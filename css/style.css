@@ -124,7 +124,7 @@ section {
 }
 
 /* Password match feedback */
-.helper-message.match {
+.helper-message.match, .helper-message.valid {
   color: green;
 }
 

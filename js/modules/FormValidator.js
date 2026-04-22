@@ -64,15 +64,21 @@ export class FormValidator {
     }
 
     showError(elementId, message) {
-          const element = document.getElementById(elementId);
+        const element = document.getElementById(elementId);
         element.textContent = message;
-        element.classList.add("active");
+        element.className = "helper-message error";
+    }
+
+    showValid(elementId, message) {
+        const element = document.getElementById(elementId);
+        element.textContent = message;
+        element.className = "helper-message valid";
     }
 
     clearError(elementId) {
         const element = document.getElementById(elementId);
         element.textContent = "";
-        element.classList.remove("active");
+        element.className = "helper-message";
     }
 
     clearAllErrors() {
@@ -81,7 +87,7 @@ export class FormValidator {
         
         errorElements.forEach((element) => {
             element.textContent = "";
-            element.classList.remove("active");
+            element.className = "helper-message";
         });
     }
 
