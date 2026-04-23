@@ -46,8 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(user));
         loginResultsContainer.textContent = `Welcome back, ${user.firstName}!`;
         loginResultsContainer.classList.add("valid");
+        
 
     });
 
