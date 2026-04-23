@@ -1,9 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const loginLink = document.getElementById("loginLink");
-    const logoutLink = document.getElementById("logoutLink");
-    const resetPasswordLink = document.getElementById("resetPasswordLink");
 
-    function updateAuthUI() {
+ function updateAuthUI() {
         const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
 
         if (loginLink) {
@@ -20,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const loginLink = document.getElementById("loginLink");
+    const logoutLink = document.getElementById("logoutLink");
+    const resetPasswordLink = document.getElementById("resetPasswordLink"); 
+
     if (logoutLink) {
         logoutLink.addEventListener("click", (event) => {
             event.preventDefault();
@@ -31,7 +32,3 @@ document.addEventListener("DOMContentLoaded", () => {
     updateAuthUI();
 });
 
-// This allows for other pages to call this if needed
-document.addEventListener("authChanged", () => {
-    updateAuthUI();
-});

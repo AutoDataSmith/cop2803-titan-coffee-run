@@ -8,6 +8,47 @@ import { FormValidator } from "./modules/FormValidator.js";
 // Some helper messages may rarely appear due to the disabled submit button,
 // but are retained to ensure robustness and completeness
 
+/*
+AI Review Notes
+Accepted suggestions:
+1. Use modular ES6 classes to separate validation, storage, and user data responsibilities.
+2. Add real-time feedback for password strength and password matching.
+3. Check for duplicate email addresses before creating a new account.
+
+Rejected or simplified suggestions:
+1. Did not add debouncing because the current form is small and performs well without it.
+2. Did not add encryption or password hashing because this is a client-side classroom project without a backend.
+3. Did not implement a more advanced validation summary workflow because the simpler summary table meets the assignment needs with less complexity.
+*/
+
+function renderSimpleSummaryTable(userData) {
+    const container = document.getElementById("resultsContainer");
+    container.innerHTML = "";
+
+    const table = document.createElement("table");
+    table.className = "validation-table";
+
+    const tbody = document.createElement("tbody");
+
+    Object.entries(userData).forEach(([key, value]) => {
+        const row = document.createElement("tr");
+
+        const fieldCell = document.createElement("td");
+        fieldCell.textContent = key;
+
+        const valueCell = document.createElement("td");
+        valueCell.textContent = value;
+
+        row.appendChild(fieldCell);
+        row.appendChild(valueCell);
+
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    container.appendChild(table);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const registrationForm = document.getElementById("registrationForm");
     const registerButton = document.getElementById("registerButton");
@@ -154,6 +195,12 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmPasswordInput.addEventListener("input", updateFormState);
     termsInput.addEventListener("change", updateFormState);
 
+
+    function clearResultsTable() {
+        const resultsContainer = document.getElementById("resultsContainer");
+        resultsContainer.innerHTML = "";
+    }    
+
     registrationForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -167,45 +214,130 @@ document.addEventListener("DOMContentLoaded", () => {
         const termsChecked = termsInput.checked;
 
         let isValid = true;
+        const validationResults = [];
+        clearResultsTable();
 
-        if (!formValidator.validateRequired(firstName)) {
+       if (!formValidator.validateRequired(firstName)) {
             formValidator.showError("firstNameHelper", "This field is required");
+            validationResults.push({
+                field: "First Name",
+                valid: false,
+                message: "This field is required"
+            });
             isValid = false;
+        } else {
+            validationResults.push({
+                field: "First Name",
+                valid: true,
+                message: firstName
+            });
         }
 
         if (!formValidator.validateRequired(lastName)) {
             formValidator.showError("lastNameHelper", "This field is required");
+            validationResults.push({
+                field: "Last Name",
+                valid: false,
+                message: "This field is required"
+            });
             isValid = false;
+        } else {
+            validationResults.push({
+                field: "Last Name",
+                valid: true,
+                message: lastName
+            });
         }
 
-        if (!formValidator.validateRequired(email)) {
+       if (!formValidator.validateRequired(email)) {
             formValidator.showError("emailHelper", "This field is required");
+            validationResults.push({
+                field: "Email",
+                valid: false,
+                message: "This field is required"
+            });
             isValid = false;
         } else if (!formValidator.validateEmail(email)) {
             formValidator.showError("emailHelper", "Enter a valid email address");
+            validationResults.push({
+                field: "Email",
+                valid: false,
+                message: "Enter a valid email address"
+            });
             isValid = false;
         } else if (storageManager.findUserByEmail(email)) {
             formValidator.showError("emailHelper", "This email is already registered");
+            validationResults.push({
+                field: "Email",
+                valid: false,
+                message: "This email is already registered"
+            });
             isValid = false;
+        } else {
+            validationResults.push({
+                field: "Email",
+                valid: true,
+                message: email
+            });
         }
 
-        if (!formValidator.validatePassword(password)) {
+       if (!formValidator.validatePassword(password)) {
             formValidator.showError("passwordHelper", "This field is required");
+            validationResults.push({
+                field: "Password",
+                valid: false,
+                message: "This field is required"
+            });
             isValid = false;
+        } else {
+            validationResults.push({
+                field: "Password",
+                valid: true,
+                message: "Password entered"
+            });
         }
 
-        if (!formValidator.validateRequired(confirmPassword)) {
+       if (!formValidator.validateRequired(confirmPassword)) {
             formValidator.showError("confirmPasswordHelper", "This field is required");
+            validationResults.push({
+                field: "Confirm Password",
+                valid: false,
+                message: "This field is required"
+            });
             isValid = false;
         } else if (!formValidator.validatePasswordMatch(password, confirmPassword)) {
             formValidator.showError("confirmPasswordHelper", "Passwords must match");
+            validationResults.push({
+                field: "Confirm Password",
+                valid: false,
+                message: "Passwords must match"
+            });
             isValid = false;
+        } else {
+            validationResults.push({
+                field: "Confirm Password",
+                valid: true,
+                message: "Passwords match"
+            });
         }
 
-        if (!formValidator.validateCheckbox(termsChecked)) {
+       if (!formValidator.validateCheckbox(termsChecked)) {
             formValidator.showError("termsHelper", "You must agree to the terms");
+            validationResults.push({
+                field: "Terms",
+                valid: false,
+                message: "You must agree to the terms"
+            });
             isValid = false;
+        } else {
+            validationResults.push({
+                field: "Terms",
+                valid: true,
+                message: "Accepted"
+            });
         }
+
+        renderValidationTable(validationResults);
 
         if (!isValid) {
             console.log("Validation failed.");
@@ -218,12 +350,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (wasAdded) {
             console.log("User added successfully.");
+
+            renderSimpleSummaryTable({
+                "First Name": firstName,
+                "Last Name": lastName,
+                "Email": email,
+                "Password": "********",
+                "Terms": "Accepted"
+            });
+
             registrationForm.reset();
             passwordStrength.textContent = "";
             passwordMatch.textContent = "";
             registerButton.disabled = true;
+            
         } else {
-            formValidator.showError("emailError", "This email is already registered");
+            formValidator.showError("emailHelper", "This email is already registered");
             console.log("Duplicate email. User was not added.");
         }
     });

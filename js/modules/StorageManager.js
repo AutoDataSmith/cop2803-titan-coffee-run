@@ -1,4 +1,10 @@
 export class StorageManager {
+    
+    
+       /**
+     * Create a storage manager for user records.
+     * @param {string} [storageKey="titanCoffeeRunUsers"] - localStorage key for saved users.
+     */
     constructor(storageKey = "titanCoffeeRunUsers") {
     this.storageKey = storageKey;
 
@@ -6,6 +12,10 @@ export class StorageManager {
     
     }
 
+     /**
+     * Get all stored users from localStorage.
+     * @returns {Array<Object>} Array of stored user objects.
+     */
     getUsers() {
        const usersJSON = localStorage.getItem(this.storageKey);
 
@@ -38,6 +48,11 @@ export class StorageManager {
         }
     }
 
+      /**
+     * Save the provided users array to localStorage.
+     * @param {Array<Object>} users - Users to save.
+     * @returns {void}
+     */
     saveUsers(users) {
          try {
             
@@ -49,6 +64,11 @@ export class StorageManager {
         }
     }
 
+     /**
+     * Find a user by email address.
+     * @param {string} email - Email address to search for.
+     * @returns {Object|null} Matching user object or null.
+     */
     findUserByEmail(email) {
 
         const users = this.getUsers();
@@ -62,8 +82,11 @@ export class StorageManager {
         return matchingUser || null;
     }
 
-    // Add a new user to localStorage.
-    // Returns true if the user was added, or false if the email already exists.
+     /**
+     * Add a new user if the email is not already registered.
+     * @param {User} user - User instance to add.
+     * @returns {boolean} True if added successfully, otherwise false.
+     */
     addUser(user) {
 
         user.email = user.email.trim().toLowerCase();

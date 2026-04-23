@@ -164,6 +164,28 @@ AI was used to:
 
 ---
 
+## AI Usage Reflection
+
+### AI Tools Used
+I used ChatGPT as my primary AI development assistant for this assignment.
+
+### Estimated AI Contribution
+I estimate that about 30% of this project was AI-assisted and 70% was my own work.
+
+AI helped most with:
+- explaining validation and storage concepts
+- suggesting code structure
+- reviewing logic and edge cases
+- improving documentation language
+
+I still made implementation decisions, tested the code, adjusted the logic, and corrected issues during development.
+
+### Biggest Aha! Moment
+My biggest aha! moment was realizing that AI is most useful when I ask for explanations, edge cases, and code review feedback instead of just asking it to write code. It worked better as a development partner than as a replacement for understanding the assignment.
+
+### One Thing AI Could Not Help Me With
+AI could not fully replace testing the project in my own browser and checking how all the files worked together in my actual app. I still had to debug integration issues, verify the user experience, and make sure the final behavior matched the assignment requirements.
+
 ## Conclusion
 
 This project demonstrates a complete client-side account management workflow using modern JavaScript techniques. While simplified for learning purposes, it reflects key concepts used in real-world web applications, including validation, session handling, and modular design.

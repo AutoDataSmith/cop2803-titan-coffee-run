@@ -200,6 +200,17 @@ section {
   color: white;
 }
 
+.validation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.validation-table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+}
+
 .status-valid {
   color: green;
   font-weight: bold;
