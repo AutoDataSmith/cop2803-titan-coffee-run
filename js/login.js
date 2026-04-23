@@ -15,19 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
     
-    function updateAuthUI() {
-        const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
-
-         if (currentUser) {
-            logoutLink.style.display = "inline";
-            loginLink.style.display = "none";
-        } else {
-            logoutLink.style.display = "none";
-            loginLink.style.display = "inline";
-        }
-    }
-
-    updateAuthUI();
+  
 
     console.log("Login page ready.");
 
@@ -67,18 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
        
         sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(user));
         loginResultsContainer.textContent = `Welcome back, ${user.firstName}!`;
-        loginResultsContainer.classList.add("valid");
-        updateAuthUI();
+        loginResultsContainer.classList.add("valid");        
 
     });
-
-    logoutLink.addEventListener("click", (event) => {
-        event.preventDefault();
-       
-        sessionStorage.removeItem("titanCoffeeRunCurrentUser");
-        loginResultsContainer.className = "helper-message valid";
-        loginResultsContainer.textContent = "You have been logged out.";
-        updateAuthUI();
-    });
+    
 
 });
