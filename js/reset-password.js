@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentUserJSON = sessionStorage.getItem("titanCoffeeRunCurrentUser");
 
     if (!currentUserJSON) {
+        sessionStorage.setItem("titanCoffeeRunRedirectAfterLogin", "reset-password.html");
         window.location.href = "login.html";
         return;
     }

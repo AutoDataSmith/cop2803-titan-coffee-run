@@ -133,3 +133,13 @@ Result: Pass
 Input: Click “Forgot your password?” from the login page  
 Expected: Informational page loads explaining secure real-world reset workflows and directs the user to log in for password changes in this project  
 Result: Pass
+
+### Test Case 27: Password With Only Spaces
+Input: Password = "     " and confirm password = "     "
+Expected: Password is treated as invalid, helper message appears, and Register remains disabled
+Result: Pass
+
+### Test Case 28: SQL Injection-Style Input in Registration Form
+Input: First name = "'; DROP TABLE users; --" and other fields valid
+Expected: Input is treated as plain text, no code executes, and the form behavior remains stable
+Result: Pass

@@ -65,11 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
        
         sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(user));
         
+        const redirectTarget = sessionStorage.getItem("titanCoffeeRunRedirectAfterLogin") || "index.html";
+        sessionStorage.removeItem("titanCoffeeRunRedirectAfterLogin");
+
         // redirect after short delay
         setTimeout(() => {
-            window.location.href = "index.html";
-        }, 1000);   
-
+            window.location.href = redirectTarget;
+        }, 1000);
+        
     });
     
 
