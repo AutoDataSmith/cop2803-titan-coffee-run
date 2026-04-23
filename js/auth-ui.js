@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const loginLink = document.getElementById("loginLink");
     const logoutLink = document.getElementById("logoutLink");
+    const resetPasswordLink = document.getElementById("resetPasswordLink");
 
     function updateAuthUI() {
         const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
@@ -12,6 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (logoutLink) {
             logoutLink.style.display = currentUser ? "inline" : "none";
         }
+        
+        if (resetPasswordLink) {
+            resetPasswordLink.style.display = currentUser ? "inline" : "none";
+        }
+
     }
 
     if (logoutLink) {
