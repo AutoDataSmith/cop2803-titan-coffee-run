@@ -22,6 +22,18 @@ document.addEventListener("DOMContentLoaded", () => {
         // reset classes first
         loginResultsContainer.className = "helper-message";
 
+        if (email === "") {
+            loginResultsContainer.textContent = "Please enter your email address.";
+            loginResultsContainer.classList.add("error");
+            return;
+        }
+
+        if (password === "") {
+            loginResultsContainer.textContent = "Please enter your password.";
+            loginResultsContainer.classList.add("error");
+            return;
+        }
+
         if (!user) {
             loginResultsContainer.textContent = "No account was found with that email address.";
              loginResultsContainer.classList.add("error");
@@ -36,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         loginResultsContainer.textContent = `Welcome back, ${user.firstName}!`;
         loginResultsContainer.classList.add("valid");
-        
+
     });
 
 });
