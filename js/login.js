@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "index.html";
         return;
     }
-    
+
     const mainContent = document.querySelector("main");
     // show page only if not logged in
     mainContent.style.display = "block";
