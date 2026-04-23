@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const loginResultsContainer = document.getElementById("loginResultsContainer");
 
+    const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
+    if (!currentUser) {
+        logoutLink.style.display = "none";
+    }
+
     console.log("Login page ready.");
 
     loginForm.addEventListener("submit", (event) => {
