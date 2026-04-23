@@ -2,6 +2,7 @@ import { StorageManager } from "./modules/StorageManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
+    const logoutLink = document.getElementById("logoutLink");
 
     const emailInput = document.getElementById("loginEmail");
     const passwordInput = document.getElementById("loginPassword");
@@ -51,6 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
         loginResultsContainer.classList.add("valid");
         
 
+    });
+
+    logoutLink.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        sessionStorage.removeItem("titanCoffeeRunCurrentUser");
+
+        loginResultsContainer.className = "helper-message valid";
+        loginResultsContainer.textContent = "You have been logged out.";
     });
 
 });
