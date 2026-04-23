@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     console.log("Registration page ready.");    
 
-    
+    let hasInitialized = false;
 
     function updateFormState() {
         const firstName = firstNameInput.value.trim();
@@ -37,12 +37,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const confirmPassword = confirmPasswordInput.value;
         const termsChecked = termsInput.checked;
 
+        const firstNameValid = formValidator.validateMinLength(firstName, 2);
+        const lastNameValid = formValidator.validateMinLength(lastName, 2);
+        const emailFormatValid = formValidator.validateEmail(email);
+        const passwordValid = formValidator.validatePassword(password);
+        const passwordsMatch = formValidator.validatePasswordMatch(password, confirmPassword);
+        const termsValid = formValidator.validateCheckbox(termsChecked);
+
         let emailIsAvailable = true;
 
+
         if (email === "") {
-            formValidator.clearError("emailHelper");
+            if (!hasInitialized || document.activeElement === emailInput) {
+                formValidator.clearError("emailHelper");
+            } else {
+                formValidator.showError("emailHelper", "This field is required");
+            }
             emailIsAvailable = false;
-        } else if (!formValidator.validateEmail(email)) {
+        } else if (!emailFormatValid) {
             formValidator.showError("emailHelper", "Enter a valid email address");
             emailIsAvailable = false;
         } else if (storageManager.findUserByEmail(email)) {
@@ -71,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (confirmPassword === "") {
             passwordMatch.textContent = "";
-        } else if (formValidator.validatePasswordMatch(password, confirmPassword)) {
+        } else if (passwordsMatch) {
             passwordMatch.textContent = "Passwords match";
             passwordMatch.classList.add("match");
         } else {
@@ -79,16 +91,23 @@ document.addEventListener("DOMContentLoaded", () => {
             passwordMatch.classList.add("no-match");
         }
 
-        registerButton.disabled = !formValidator.isFormValid(
-            firstName,
-            lastName,
-            email,
-            password,
-            confirmPassword,
-            termsChecked,
-            emailIsAvailable
-        );
+        const allFieldsExceptTermsValid =
+            firstNameValid &&
+            lastNameValid &&
+             emailFormatValid &&
+            emailIsAvailable &&
+            passwordValid &&
+            passwordsMatch;
 
+        if (!termsChecked && allFieldsExceptTermsValid) {
+            formValidator.showError("termsHelper", "You must agree to the terms");
+        } else {
+            formValidator.clearError("termsHelper");
+        }
+
+        registerButton.disabled = !(allFieldsExceptTermsValid && termsValid);
+        
+       
     }
 
     function updateFirstNameFeedback() {
@@ -115,13 +134,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    firstNameInput.addEventListener("input", updateFormState);
-    lastNameInput.addEventListener("input", updateFormState);
+    firstNameInput.addEventListener("input", () => {
+        updateFirstNameFeedback();
+        updateFormState();
+    });
+
+    lastNameInput.addEventListener("input", () => {
+        updateLastNameFeedback();
+        updateFormState();
+    });
 
     firstNameInput.addEventListener("blur", updateFirstNameFeedback);
     lastNameInput.addEventListener("blur", updateLastNameFeedback);
-
+    
     emailInput.addEventListener("input", updateFormState);
+    emailInput.addEventListener("blur", updateFormState);
+    
     passwordInput.addEventListener("input", updateFormState);
     confirmPasswordInput.addEventListener("input", updateFormState);
     termsInput.addEventListener("change", updateFormState);
@@ -201,5 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updateFormState();
+
+    hasInitialized = true;
 
 });
