@@ -12,10 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginResultsContainer = document.getElementById("loginResultsContainer");
 
     const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
-    if (!currentUser) {
-        logoutLink.style.display = "none";
+    
+    function updateAuthUI() {
+        const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
+
+        if (currentUser) {
+            logoutLink.style.display = "inline";
+        } else {
+            logoutLink.style.display = "none";
+        }
     }
 
+    updateAuthUI();
+    
     console.log("Login page ready.");
 
     loginForm.addEventListener("submit", (event) => {
