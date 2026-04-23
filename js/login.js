@@ -2,6 +2,8 @@ import { StorageManager } from "./modules/StorageManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
+    
+    const loginLink = document.getElementById("loginLink");
     const logoutLink = document.getElementById("logoutLink");
 
     const emailInput = document.getElementById("loginEmail");
@@ -16,15 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateAuthUI() {
         const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
 
-        if (currentUser) {
+         if (currentUser) {
             logoutLink.style.display = "inline";
+            loginLink.style.display = "none";
         } else {
             logoutLink.style.display = "none";
+            loginLink.style.display = "inline";
         }
     }
 
     updateAuthUI();
-    
+
     console.log("Login page ready.");
 
     loginForm.addEventListener("submit", (event) => {
@@ -59,22 +63,22 @@ document.addEventListener("DOMContentLoaded", () => {
             loginResultsContainer.textContent = "Incorrect password. Please try again.";
              loginResultsContainer.classList.add("error");
             return;
-        }
-
+        }        
+       
         sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(user));
         loginResultsContainer.textContent = `Welcome back, ${user.firstName}!`;
         loginResultsContainer.classList.add("valid");
-        
+        updateAuthUI();
 
     });
 
     logoutLink.addEventListener("click", (event) => {
         event.preventDefault();
-
+       
         sessionStorage.removeItem("titanCoffeeRunCurrentUser");
-
         loginResultsContainer.className = "helper-message valid";
         loginResultsContainer.textContent = "You have been logged out.";
+        updateAuthUI();
     });
 
 });
