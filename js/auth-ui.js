@@ -18,13 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
         logoutLink.addEventListener("click", (event) => {
             event.preventDefault();
             sessionStorage.removeItem("titanCoffeeRunCurrentUser");
-            updateAuthUI();
+            window.location.href = "login.html";
         });
     }
 
     updateAuthUI();
 });
 
+// This allows for other pages to call this if needed
 document.addEventListener("authChanged", () => {
     updateAuthUI();
 });
