@@ -9,51 +9,52 @@
 </head>
 <body>
 
-  <header>
-    <h1>Titan Coffee Run</h1>
+    <header>
+        <h1>Titan Coffee Run</h1>
 
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="apply.html">Apply for Credit</a></li>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="login.html">Login</a></li>
-      </ul>
-    </nav>
-  </header>
+        <nav aria-label="Main navigation">
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="apply.html">Apply for Credit</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <section class="form-section">
-      <h2>Log In to Your Account</h2>
-      <p>Enter your email address and password to access your Titan Coffee Run account.</p>
+    <main>
+        <section class="form-section">
+            <h2>Log In to Your Account</h2>
+            <p>Enter your email address and password to access your Titan Coffee Run account.</p>
 
-      <form id="loginForm" novalidate>
-        <div class="form-row">
-          <label for="loginEmail">Email Address</label>
-          <input type="email" id="loginEmail" name="loginEmail" placeholder="name@example.com">
-          <span class="helper-message" id="loginEmailHelper"></span>
-        </div>
+            <form id="loginForm" novalidate>
+                <div class="form-row">
+                <label for="loginEmail">Email Address</label>
+                <input type="email" id="loginEmail" name="loginEmail" placeholder="name@example.com">
+                <span class="helper-message" id="loginEmailHelper"></span>
+                </div>
 
-        <div class="form-row">
-          <label for="loginPassword">Password</label>
-          <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter password">
-          <span class="helper-message" id="loginPasswordHelper"></span>
-        </div>
+                <div class="form-row">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter password">
+                <span class="helper-message" id="loginPasswordHelper"></span>
+                </div>
 
-        <div class="button-row">
-          <button type="submit" id="loginButton">Login</button>
-        </div>
-      </form>
+                <div class="button-row">
+                <button type="submit" id="loginButton">Login</button>
+                </div>
+            </form>
 
-      <p><a href="reset-password.html">Forgot your password?</a></p>
+            <p><a href="reset-password.html">Forgot your password?</a></p>
 
-      <div id="loginResultsContainer"></div>
-    </section>
-  </main>
+            <div id="loginResultsContainer"></div>
+        </section>
+    </main>
 
-  <footer>
-    <p>&copy; 2026 Titan Coffee Run. Serving St. Petersburg College.</p>
-  </footer>
+    <footer>
+        <p>&copy; 2026 Titan Coffee Run. Serving St. Petersburg College.</p>
+    </footer>
 
+    <script type="module" src="js/login.js"></script>
 </body>
 </html>
