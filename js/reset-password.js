@@ -136,7 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // success message
         resetResultsContainer.textContent = "Password updated successfully.";
         resetResultsContainer.classList.add("valid");
-        
+        resetPasswordForm.reset();
+        passwordStrength.textContent = "";
+        passwordStrength.className = "helper-message";
+        passwordMatch.textContent = "";
+        passwordMatch.className = "helper-message";
+
     });
    
 });
