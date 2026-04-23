@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordInput = document.getElementById("loginPassword");
 
     const storageManager = new StorageManager();
+    
+    const loginResultsContainer = document.getElementById("loginResultsContainer");
 
     console.log("Login page ready.");
 
@@ -16,10 +18,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const email = emailInput.value.trim();
         const password = passwordInput.value;
 
-        console.log("Login attempt:", email, password);
-
         const user = storageManager.findUserByEmail(email);
+        // reset classes first
+        loginResultsContainer.className = "helper-message";
 
-        console.log("User found:", user);
+        if (!user) {
+            loginResultsContainer.textContent = "No account was found with that email address.";
+             loginResultsContainer.classList.add("error");
+            return;
+        }
+
+        if (user.password !== password) {
+            loginResultsContainer.textContent = "Incorrect password. Please try again.";
+             loginResultsContainer.classList.add("error");
+            return;
+        }
+
+        loginResultsContainer.textContent = `Welcome back, ${user.firstName}!`;
+        loginResultsContainer.classList.add("valid");
+        
     });
+
 });
