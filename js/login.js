@@ -1,6 +1,19 @@
 import { StorageManager } from "./modules/StorageManager.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {    
+    
+    const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
+    
+    // No need to be on this page for authenticated users - redirect to home
+    if (currentUser) {
+        window.location.href = "index.html";
+        return;
+    }
+    
+    const mainContent = document.querySelector("main");
+    // show page only if not logged in
+    mainContent.style.display = "block";
+
     const loginForm = document.getElementById("loginForm");
     
     const loginLink = document.getElementById("loginLink");
@@ -13,9 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const loginResultsContainer = document.getElementById("loginResultsContainer");
 
-    const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
-    
-  
 
     console.log("Login page ready.");
 
