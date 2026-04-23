@@ -24,3 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateAuthUI();
 });
+
+document.addEventListener("authChanged", () => {
+    updateAuthUI();
+});
