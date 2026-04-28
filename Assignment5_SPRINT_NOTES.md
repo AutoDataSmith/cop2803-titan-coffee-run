@@ -1,4 +1,4 @@
-# Sprint 3 Notes - Titan Coffee Run
+# Sprint 2.5 Notes - Titan Coffee Run
 
 ## User Story
 
