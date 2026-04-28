@@ -25,13 +25,31 @@ function formatSalesAmount(amount) {
     return `$${amount.toFixed(2)}`;
 }
 
+/**
+ * Convert a sales amount into a proportional bar height.
+ * The largest sales value becomes the tallest bar and the
+ * remaining bars scale relative to that maximum.
+ *
+ * @param {number} amount - Sales amount for the current quarter.
+ * @param {number} maxAmount - Largest sales amount in the dataset.
+ * @returns {number} Height in pixels for the rendered bar.
+ */
 function getBarHeight(amount, maxAmount) {
     const maxBarHeight = 220;
     return (amount / maxAmount) * maxBarHeight;
 }
 
+/**
+ * Build the sales chart by creating one bar group per quarter.
+ * Each group includes the dollar value, the colored bar, and the quarter label.
+ *
+ * @returns {void}
+ */
 function renderSalesChart() {
     const chartContainer = document.getElementById("salesChart");
+
+    // Find the highest sales value first so every bar can be scaled against it.
+    // The spread operator (...) passes the mapped amounts into Math.max as individual values.
     const maxAmount = Math.max(...salesData.map((item) => item.amount));
 
     chartContainer.innerHTML = "";
