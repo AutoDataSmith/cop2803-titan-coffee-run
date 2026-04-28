@@ -9,6 +9,13 @@ function setLinkVisibility(element, shouldShow) {
         return;
     }
 
+    const navItem = element.closest("li");
+
+    if (navItem) {
+        navItem.style.display = shouldShow ? "" : "none";
+        return;
+    }
+
     element.style.display = shouldShow ? "inline" : "none";
 }
 
