@@ -25,14 +25,17 @@ function setLinkVisibility(element, shouldShow) {
 function updateAuthUI() {
     const currentUser = getCurrentUser();
     const isLoggedIn = currentUser !== null;
+    const isAdmin = currentUser && currentUser.email === "admin";
 
     const loginLink = document.getElementById("loginLink");
     const logoutLink = document.getElementById("logoutLink");
     const resetPasswordLink = document.getElementById("resetPasswordLink");
+    const salesLink = document.getElementById("salesLink");
 
     setLinkVisibility(loginLink, !isLoggedIn);
     setLinkVisibility(logoutLink, isLoggedIn);
     setLinkVisibility(resetPasswordLink, isLoggedIn);
+    setLinkVisibility(salesLink, isAdmin);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
