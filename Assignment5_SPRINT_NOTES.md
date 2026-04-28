@@ -45,6 +45,7 @@
 
 ### 3. Interactive Bar Graph
 - Use JavaScript DOM manipulation to build the graph
+- Use plain HTML, CSS, and JavaScript instead of Canvas or SVG so the chart stays easier to read, debug, and explain in a class project
 - Display quarterly sales values for:
   - Jan-Mar
   - Apr-Jun
@@ -60,6 +61,7 @@
 - Animate bars from zero to full height when the page loads
 - Add hover behavior to make values easier to inspect
 - Add reset button functionality to animate bars back to zero
+- After testing, refine the visual behavior so values appear after the bar animation completes and the button can switch to a reload action after reset
 - Keep the event handling straightforward and easy to debug
 
 ---
@@ -89,3 +91,4 @@
 - This assignment is additive, so the existing authentication and navigation structure should be reused instead of replaced
 - A full refactor may be considered later, but the first goal is to complete the required dashboard cleanly and correctly
 - The implementation should stay at a practical class-project level and avoid unnecessary complexity
+- The chart approach uses standard HTML elements styled with CSS transitions because that method matched the current project structure and required less setup than drawing with Canvas

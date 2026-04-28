@@ -39,6 +39,35 @@ function getBarHeight(amount, maxAmount) {
     return (amount / maxAmount) * maxBarHeight;
 }
 
+function animateBarsToTargetHeights() {
+    const bars = document.querySelectorAll(".sales-bar");
+    const valueLabels = document.querySelectorAll(".sales-value");
+
+    bars.forEach((bar) => {
+        const targetHeight = bar.dataset.targetHeight;
+        bar.style.height = `${targetHeight}px`;
+    });
+
+    setTimeout(() => {
+        valueLabels.forEach((valueLabel) => {
+            valueLabel.classList.add("visible");
+        });
+    }, 900);
+}
+
+function resetBars() {
+    const bars = document.querySelectorAll(".sales-bar");
+    const valueLabels = document.querySelectorAll(".sales-value");
+
+    bars.forEach((bar) => {
+        bar.style.height = "0px";
+    });
+
+    valueLabels.forEach((valueLabel) => {
+        valueLabel.classList.remove("visible");
+    });
+}
+
 /**
  * Build the sales chart by creating one bar group per quarter.
  * Each group includes the dollar value, the colored bar, and the quarter label.
@@ -64,7 +93,8 @@ function renderSalesChart() {
 
         const bar = document.createElement("div");
         bar.className = "sales-bar";
-        bar.style.height = `${getBarHeight(item.amount, maxAmount)}px`;
+        bar.dataset.targetHeight = getBarHeight(item.amount, maxAmount).toString();
+        bar.style.height = "0px";
         bar.style.backgroundColor = item.color;
         bar.title = formatSalesAmount(item.amount);
 
@@ -95,8 +125,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const mainContent = document.querySelector("main");
+    const resetSalesButton = document.getElementById("resetSalesButton");
+    let chartIsReset = false;
+
     mainContent.style.display = "block";
     renderSalesChart();
+
+    setTimeout(() => {
+        animateBarsToTargetHeights();
+    }, 100);
+
+    resetSalesButton.addEventListener("click", () => {
+        if (chartIsReset) {
+            animateBarsToTargetHeights();
+            resetSalesButton.textContent = "Reset Chart";
+            chartIsReset = false;
+            return;
+        }
+
+        resetBars();
+        resetSalesButton.textContent = "Reload Chart";
+        chartIsReset = true;
+    });
 
     console.log("Sales dashboard page ready.");
 });

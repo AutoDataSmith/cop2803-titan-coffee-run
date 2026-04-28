@@ -26,3 +26,10 @@
 **What I Decided or Changed:** I suggested that a logged-in non-admin user should be sent to an `access-denied.html` page instead of being redirected to `login.html` and then immediately to the home page. This made the route behavior clearer and easier to test.
 **What I Learned:** Testing partial features early can reveal user experience problems even when the technical protection logic is working.
 
+## Entry 5
+**Tool Used:** Codex Desktop
+**Task:** Refined the sales chart visual behavior and documented the implementation choice
+**What AI Helped With:** Helped apply small UI refinements to the sales chart and document why a plain HTML/CSS/JavaScript bar chart was used instead of Canvas or SVG.
+**What I Decided or Changed:** I suggested that the chart values should stay hidden until the load animation finishes, respond visually on hover by emphasizing the value text, and change the button text to `Reload Chart` after reset. I also kept the chart built with regular HTML elements and CSS transitions because that approach matched the project better and was easier to explain and debug.
+**What I Learned:** For a smaller assignment, simple DOM elements with CSS transitions can still meet animation requirements while keeping the code more readable than a graphics-based approach.
+
