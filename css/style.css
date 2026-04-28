@@ -300,6 +300,20 @@ section {
   font-weight: bold;
 }
 
+.order-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.order-panel {
+  padding: 20px;
+  border: 2px solid #6f4e37;
+  border-radius: 8px;
+  background-color: #fdfaf7;
+}
+
 /* this adds and alternating row color for readability */
 .summary-table tr:nth-child(even) {
   background-color: #f5f5f5;
@@ -336,6 +350,10 @@ footer {
 
   .sales-bar {
     max-width: none;
+  }
+
+  .order-layout {
+    grid-template-columns: 1fr;
   }
 
   .sales-label,
