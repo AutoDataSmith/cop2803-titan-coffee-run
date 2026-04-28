@@ -1,4 +1,10 @@
 import { StorageManager } from "./modules/StorageManager.js";
+import {
+    clearRedirectAfterLogin,
+    getCurrentUser,
+    getRedirectAfterLogin,
+    setCurrentUser
+} from "./modules/SessionManager.js";
 
 const ADMIN_CREDENTIALS = {
     email: "admin",
@@ -14,10 +20,10 @@ function createSessionUser(user, isAdmin = false) {
 
 document.addEventListener("DOMContentLoaded", () => {    
     
-    const currentUserJSON = sessionStorage.getItem("titanCoffeeRunCurrentUser");
+    const currentUser = getCurrentUser();
     
     // No need to be on this page for authenticated users - redirect to home
-    if (currentUserJSON) {
+    if (currentUser) {
         window.location.href = "index.html";
         return;
     }
@@ -69,10 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 true
             );
 
-            sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(adminSessionUser));
+            setCurrentUser(adminSessionUser);
 
-            const redirectTarget = sessionStorage.getItem("titanCoffeeRunRedirectAfterLogin") || "sales.html";
-            sessionStorage.removeItem("titanCoffeeRunRedirectAfterLogin");
+            const redirectTarget = getRedirectAfterLogin() || "sales.html";
+            clearRedirectAfterLogin();
 
             setTimeout(() => {
                 window.location.href = redirectTarget;
@@ -96,10 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }        
        
         const sessionUser = createSessionUser(user, false);
-        sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(sessionUser));
+        setCurrentUser(sessionUser);
         
-        const redirectTarget = sessionStorage.getItem("titanCoffeeRunRedirectAfterLogin") || "index.html";
-        sessionStorage.removeItem("titanCoffeeRunRedirectAfterLogin");
+        const redirectTarget = getRedirectAfterLogin() || "index.html";
+        clearRedirectAfterLogin();
 
         // redirect after short delay
         setTimeout(() => {

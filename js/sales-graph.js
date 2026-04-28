@@ -1,4 +1,7 @@
-import { getCurrentUser } from "./modules/SessionManager.js";
+import {
+    getCurrentUser,
+    setRedirectAfterLogin
+} from "./modules/SessionManager.js";
 
 const salesData = [
     { quarter: "Jan-Mar", amount: 2005.00, color: "#6f4e37" },
@@ -100,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentUser = getCurrentUser();
 
     if (!currentUser) {
-        sessionStorage.setItem("titanCoffeeRunRedirectAfterLogin", "sales.html");
+        setRedirectAfterLogin("sales.html");
         window.location.href = "login.html";
         return;
     }

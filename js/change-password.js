@@ -1,13 +1,18 @@
 import { StorageManager } from "./modules/StorageManager.js";
 import { FormValidator } from "./modules/FormValidator.js";
+import {
+    getCurrentUser,
+    setCurrentUser,
+    setRedirectAfterLogin
+} from "./modules/SessionManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const resetPasswordForm = document.getElementById("resetPasswordForm");
 
-    const currentUserJSON = sessionStorage.getItem("titanCoffeeRunCurrentUser");
+    const currentUser = getCurrentUser();
 
-    if (!currentUserJSON) {
-        sessionStorage.setItem("titanCoffeeRunRedirectAfterLogin", "change-password.html");
+    if (!currentUser) {
+        setRedirectAfterLogin("change-password.html");
         window.location.href = "login.html";
         return;
     }
@@ -111,8 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const currentUser = JSON.parse(currentUserJSON);
-
         // get all users
         const users = storageManager.getUsers();
 
@@ -132,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // update session user
         currentUser.password = newPassword;
-        sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(currentUser));
+        setCurrentUser(currentUser);
 
         // success message
         resetResultsContainer.textContent = "Password updated successfully.";

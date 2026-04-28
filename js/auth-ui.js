@@ -1,4 +1,8 @@
-import { getCurrentUser } from "./modules/SessionManager.js";
+import {
+    clearCurrentUser,
+    clearRedirectAfterLogin,
+    getCurrentUser
+} from "./modules/SessionManager.js";
 
 function setLinkVisibility(element, shouldShow) {
     if (!element) {
@@ -30,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (logoutLink) {
         logoutLink.addEventListener("click", (event) => {
             event.preventDefault();
-            sessionStorage.removeItem("titanCoffeeRunCurrentUser");
-            sessionStorage.removeItem("titanCoffeeRunRedirectAfterLogin");
+            clearCurrentUser();
+            clearRedirectAfterLogin();
             window.location.href = "login.html";
         });
     }
