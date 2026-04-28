@@ -1,34 +1,51 @@
+function getCurrentUser() {
+    const currentUserJSON = sessionStorage.getItem("titanCoffeeRunCurrentUser");
 
- function updateAuthUI() {
-        const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
-
-        if (loginLink) {
-            loginLink.style.display = currentUser ? "none" : "inline";
-        }
-
-        if (logoutLink) {
-            logoutLink.style.display = currentUser ? "inline" : "none";
-        }
-        
-        if (resetPasswordLink) {
-            resetPasswordLink.style.display = currentUser ? "inline" : "none";
-        }
-
+    if (!currentUserJSON) {
+        return null;
     }
 
-document.addEventListener("DOMContentLoaded", () => {
+    try {
+        return JSON.parse(currentUserJSON);
+    } catch (error) {
+        console.error("Unable to parse current user session data:", error);
+        sessionStorage.removeItem("titanCoffeeRunCurrentUser");
+        return null;
+    }
+}
+
+function setLinkVisibility(element, shouldShow) {
+    if (!element) {
+        return;
+    }
+
+    element.style.display = shouldShow ? "inline" : "none";
+}
+
+function updateAuthUI() {
+    const currentUser = getCurrentUser();
+    const isLoggedIn = currentUser !== null;
+
     const loginLink = document.getElementById("loginLink");
     const logoutLink = document.getElementById("logoutLink");
-    const resetPasswordLink = document.getElementById("resetPasswordLink"); 
+    const resetPasswordLink = document.getElementById("resetPasswordLink");
+
+    setLinkVisibility(loginLink, !isLoggedIn);
+    setLinkVisibility(logoutLink, isLoggedIn);
+    setLinkVisibility(resetPasswordLink, isLoggedIn);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutLink = document.getElementById("logoutLink");
 
     if (logoutLink) {
         logoutLink.addEventListener("click", (event) => {
             event.preventDefault();
             sessionStorage.removeItem("titanCoffeeRunCurrentUser");
+            sessionStorage.removeItem("titanCoffeeRunRedirectAfterLogin");
             window.location.href = "login.html";
         });
     }
 
     updateAuthUI();
 });
-

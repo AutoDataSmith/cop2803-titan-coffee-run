@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentUserJSON = sessionStorage.getItem("titanCoffeeRunCurrentUser");
 
     if (!currentUserJSON) {
-        sessionStorage.setItem("titanCoffeeRunRedirectAfterLogin", "reset-password.html");
+        sessionStorage.setItem("titanCoffeeRunRedirectAfterLogin", "change-password.html");
         window.location.href = "login.html";
         return;
     }
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordMatch = document.getElementById("newPasswordMatch");
 
     const resetResultsContainer = document.getElementById("resetResultsContainer");
-    console.log("Reset password page ready.");
+    console.log("Change password page ready.");
 
 
     function updatePasswordFeedback() {

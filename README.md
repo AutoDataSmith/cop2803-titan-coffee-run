@@ -83,7 +83,7 @@ index.html
 apply.html
 register.html
 login.html
-reset-password.html
+change-password.html
 forgot-password.html
 
 css/
@@ -92,7 +92,7 @@ css/
 js/
   banner-slider.js
   login.js
-  reset-password.js
+  change-password.js
   auth-ui.js
   modules/
     FormValidator.js
