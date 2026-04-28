@@ -1,25 +1,11 @@
+import { getCurrentUser } from "./modules/SessionManager.js";
+
 const salesData = [
     { quarter: "Jan-Mar", amount: 2005.00, color: "#6f4e37" },
     { quarter: "Apr-Jun", amount: 1471.31, color: "#a2673f" },
     { quarter: "Jul-Sep", amount: 892.86, color: "#d4a373" },
     { quarter: "Oct-Dec", amount: 531.60, color: "#588157" }
 ];
-
-function getCurrentUser() {
-    const currentUserJSON = sessionStorage.getItem("titanCoffeeRunCurrentUser");
-
-    if (!currentUserJSON) {
-        return null;
-    }
-
-    try {
-        return JSON.parse(currentUserJSON);
-    } catch (error) {
-        console.error("Unable to parse current user session data:", error);
-        sessionStorage.removeItem("titanCoffeeRunCurrentUser");
-        return null;
-    }
-}
 
 function formatSalesAmount(amount) {
     return `$${amount.toFixed(2)}`;

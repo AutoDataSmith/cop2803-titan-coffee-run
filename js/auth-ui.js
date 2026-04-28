@@ -1,18 +1,4 @@
-function getCurrentUser() {
-    const currentUserJSON = sessionStorage.getItem("titanCoffeeRunCurrentUser");
-
-    if (!currentUserJSON) {
-        return null;
-    }
-
-    try {
-        return JSON.parse(currentUserJSON);
-    } catch (error) {
-        console.error("Unable to parse current user session data:", error);
-        sessionStorage.removeItem("titanCoffeeRunCurrentUser");
-        return null;
-    }
-}
+import { getCurrentUser } from "./modules/SessionManager.js";
 
 function setLinkVisibility(element, shouldShow) {
     if (!element) {
