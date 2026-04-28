@@ -25,7 +25,7 @@ function setLinkVisibility(element, shouldShow) {
 function updateAuthUI() {
     const currentUser = getCurrentUser();
     const isLoggedIn = currentUser !== null;
-    const isAdmin = currentUser && currentUser.email === "admin";
+    const isAdmin = currentUser && currentUser.isAdmin === true;
 
     const loginLink = document.getElementById("loginLink");
     const logoutLink = document.getElementById("logoutLink");
