@@ -17,9 +17,14 @@ function getCurrentUser() {
 document.addEventListener("DOMContentLoaded", () => {
     const currentUser = getCurrentUser();
 
-    if (!currentUser || currentUser.isAdmin !== true) {
+    if (!currentUser) {
         sessionStorage.setItem("titanCoffeeRunRedirectAfterLogin", "sales.html");
         window.location.href = "login.html";
+        return;
+    }
+
+    if (currentUser.isAdmin !== true) {
+        window.location.href = "access-denied.html";
         return;
     }
 

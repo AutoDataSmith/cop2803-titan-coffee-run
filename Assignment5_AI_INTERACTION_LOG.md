@@ -19,3 +19,10 @@
 **What I Decided or Changed:** I suggested changing the logic to use an `isAdmin` flag in the session object instead of checking whether the username or email matched `"admin"`. This keeps identity and permissions separate and makes the code easier to explain.
 **What I Learned:** Even in a small class project, it is better to represent permissions with a dedicated property than to overload a login field for authorization decisions.
 
+## Entry 4
+**Tool Used:** Codex Desktop
+**Task:** Improved the protected-route behavior for non-admin users
+**What AI Helped With:** Reviewed the sales page redirect flow after testing and helped compare the current double-redirect behavior against a cleaner access-control option.
+**What I Decided or Changed:** I suggested that a logged-in non-admin user should be sent to an `access-denied.html` page instead of being redirected to `login.html` and then immediately to the home page. This made the route behavior clearer and easier to test.
+**What I Learned:** Testing partial features early can reveal user experience problems even when the technical protection logic is working.
+
