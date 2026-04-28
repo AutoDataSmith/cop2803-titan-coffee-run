@@ -30,23 +30,20 @@
     <section class="form-section">
       <h2>Order Coffee</h2>
       <p>
-        Welcome to the Titan Coffee Run order page. In this sprint, this page will be used to
-        select coffee items, build a cart, and continue to checkout.
+        Choose your coffee, select a size, and add items to your cart. Your current cart will
+        stay available during this session.
       </p>
 
       <div class="order-layout">
         <section class="order-panel">
           <h3>Coffee Menu</h3>
-          <p>
-            Menu items, size options, quantity controls, and add-to-cart buttons will be added next.
-          </p>
+          <div id="menuList" class="menu-list"></div>
         </section>
 
         <section class="order-panel">
           <h3>Current Cart</h3>
-          <p>
-            Your cart summary will appear here once the cart logic is connected.
-          </p>
+          <p id="cartMessage" class="helper-message"></p>
+          <div id="cartSummary"></div>
         </section>
       </div>
 
@@ -61,6 +58,6 @@
   </footer>
 
   <script type="module" src="js/auth-ui.js"></script>
-  <script type="module" src="js/order.js"></script>
+  <script type="module" src="js/cart.js"></script>
 </body>
 </html>

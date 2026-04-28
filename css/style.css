@@ -314,6 +314,64 @@ section {
   background-color: #fdfaf7;
 }
 
+.menu-list {
+  display: grid;
+  gap: 16px;
+}
+
+.menu-item-card {
+  padding: 16px;
+  border: 1px solid #b8a18f;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.menu-item-card h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.menu-item-price {
+  font-weight: bold;
+  color: #6f4e37;
+}
+
+.menu-item-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.menu-item-controls .button-row {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
+.cart-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.cart-list th,
+.cart-list td {
+  border: 1px solid #999;
+  padding: 8px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.cart-list th {
+  background-color: #6f4e37;
+  color: white;
+}
+
+.cart-total {
+  margin-top: 16px;
+  font-weight: bold;
+}
+
 /* this adds and alternating row color for readability */
 .summary-table tr:nth-child(even) {
   background-color: #f5f5f5;
@@ -353,6 +411,10 @@ footer {
   }
 
   .order-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-item-controls {
     grid-template-columns: 1fr;
   }
 
