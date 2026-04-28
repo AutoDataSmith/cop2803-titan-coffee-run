@@ -1,11 +1,23 @@
 import { StorageManager } from "./modules/StorageManager.js";
 
+const ADMIN_CREDENTIALS = {
+    email: "admin",
+    password: "test123"
+};
+
+function createSessionUser(user, isAdmin = false) {
+    return {
+        ...user,
+        isAdmin
+    };
+}
+
 document.addEventListener("DOMContentLoaded", () => {    
     
-    const currentUser = sessionStorage.getItem("titanCoffeeRunCurrentUser");
+    const currentUserJSON = sessionStorage.getItem("titanCoffeeRunCurrentUser");
     
     // No need to be on this page for authenticated users - redirect to home
-    if (currentUser) {
+    if (currentUserJSON) {
         window.location.href = "index.html";
         return;
     }
@@ -16,9 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const loginForm = document.getElementById("loginForm");
     
-    const loginLink = document.getElementById("loginLink");
-    const logoutLink = document.getElementById("logoutLink");
-
     const emailInput = document.getElementById("loginEmail");
     const passwordInput = document.getElementById("loginPassword");
 
@@ -34,10 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const email = emailInput.value.trim();
         const password = passwordInput.value;
-
-        const user = storageManager.findUserByEmail(email);
         // reset classes first
         loginResultsContainer.className = "helper-message";
+        loginResultsContainer.textContent = "";
 
         if (email === "") {
             loginResultsContainer.textContent = "Please enter your email address.";
@@ -51,6 +59,30 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+            const adminSessionUser = createSessionUser(
+                {
+                    firstName: "Admin",
+                    lastName: "User",
+                    email: ADMIN_CREDENTIALS.email
+                },
+                true
+            );
+
+            sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(adminSessionUser));
+
+            const redirectTarget = sessionStorage.getItem("titanCoffeeRunRedirectAfterLogin") || "sales.html";
+            sessionStorage.removeItem("titanCoffeeRunRedirectAfterLogin");
+
+            setTimeout(() => {
+                window.location.href = redirectTarget;
+            }, 1000);
+
+            return;
+        }
+
+        const user = storageManager.findUserByEmail(email);
+
         if (!user) {
             loginResultsContainer.textContent = "No account was found with that email address.";
              loginResultsContainer.classList.add("error");
@@ -63,7 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }        
        
-        sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(user));
+        const sessionUser = createSessionUser(user, false);
+        sessionStorage.setItem("titanCoffeeRunCurrentUser", JSON.stringify(sessionUser));
         
         const redirectTarget = sessionStorage.getItem("titanCoffeeRunRedirectAfterLogin") || "index.html";
         sessionStorage.removeItem("titanCoffeeRunRedirectAfterLogin");

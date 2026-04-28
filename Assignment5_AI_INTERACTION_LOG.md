@@ -12,3 +12,10 @@
 **What I Decided or Changed:** I chose to keep the existing project structure and avoid a full refactor before building the new sales dashboard feature.
 **What I Learned:** For larger multi-file assignments, a desktop workspace-based AI tool can be easier to manage than multiple browser chat sessions.
 
+## Entry 3
+**Tool Used:** Codex Desktop
+**Task:** Refined the admin access design for Assignment 5
+**What AI Helped With:** Reviewed the temporary admin check and discussed whether admin access should be tied to the email value or handled more explicitly in session data.
+**What I Decided or Changed:** I suggested changing the logic to use an `isAdmin` flag in the session object instead of checking whether the username or email matched `"admin"`. This keeps identity and permissions separate and makes the code easier to explain.
+**What I Learned:** Even in a small class project, it is better to represent permissions with a dedicated property than to overload a login field for authorization decisions.
+
