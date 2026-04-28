@@ -152,6 +152,24 @@ section {
   background-color: #5a3f2d;
 }
 
+.button-link {
+  display: inline-block;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  background-color: #6f4e37;
+  color: white;
+  font-size: 1rem;
+  font-weight: normal;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button-link:hover {
+  background-color: #5a3f2d;
+  text-decoration: none;
+}
+
 /* Disabled button state for Register until form is valid */
 .button-row button:disabled {
   background-color: #a89b91;
@@ -221,6 +239,49 @@ section {
   font-weight: bold;
 }
 
+.sales-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 320px;
+  margin-top: 24px;
+  padding: 20px;
+  border: 2px solid #6f4e37;
+  border-radius: 8px;
+  background-color: #fdfaf7;
+}
+
+.sales-bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.sales-value {
+  min-height: 1.2em;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.sales-bar {
+  width: 100%;
+  max-width: 100px;
+  height: 0;
+  border-radius: 6px 6px 0 0;
+}
+
+.sales-label {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
 /* this adds and alternating row color for readability */
 .summary-table tr:nth-child(even) {
   background-color: #f5f5f5;
@@ -242,6 +303,27 @@ footer {
   nav ul {
     flex-direction: column;
     gap: 8px;
+  }
+
+  .sales-chart {
+    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sales-bar-group {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .sales-bar {
+    max-width: none;
+    min-height: 24px;
+  }
+
+  .sales-label,
+  .sales-value {
+    text-align: left;
   }
 }
 
