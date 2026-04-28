@@ -19,11 +19,13 @@ function updateAuthUI() {
 
     const loginLink = document.getElementById("loginLink");
     const logoutLink = document.getElementById("logoutLink");
+    const registerLink = document.querySelector('a[href="register.html"]');
     const resetPasswordLink = document.getElementById("resetPasswordLink");
     const salesLink = document.getElementById("salesLink");
 
     setLinkVisibility(loginLink, !isLoggedIn);
     setLinkVisibility(logoutLink, isLoggedIn);
+    setLinkVisibility(registerLink, !isLoggedIn);
     setLinkVisibility(resetPasswordLink, isLoggedIn);
     setLinkVisibility(salesLink, isAdmin);
 }

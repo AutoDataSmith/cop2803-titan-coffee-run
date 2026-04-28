@@ -1,6 +1,7 @@
 import { User } from "./modules/User.js";
 import { StorageManager } from "./modules/StorageManager.js";
 import { FormValidator } from "./modules/FormValidator.js";
+import { getCurrentUser } from "./modules/SessionManager.js";
 
 // Validation is implemented in two layers:
 // 1. Real-time validation for user experience (prevents invalid submission)
@@ -50,6 +51,14 @@ function renderSimpleSummaryTable(userData) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = getCurrentUser();
+
+    // No need to be on this page for authenticated users - redirect to home
+    if (currentUser) {
+        window.location.href = "index.html";
+        return;
+    }
+
     const registrationForm = document.getElementById("registrationForm");
     const registerButton = document.getElementById("registerButton");
 
