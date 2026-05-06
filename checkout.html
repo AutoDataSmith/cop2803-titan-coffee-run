@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Place a coffee order with Titan Coffee Run.">
-  <title>Order Coffee | Titan Coffee Run</title>
+  <meta name="description" content="Review your Titan Coffee Run order before checkout.">
+  <title>Checkout | Titan Coffee Run</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -28,28 +28,19 @@
 
   <main style="display: none;">
     <section class="form-section wide-section">
-      <h2>Order Coffee</h2>
+      <h2>Checkout</h2>
       <p>
-        Choose your coffee, select a size, and add items to your cart. Your current cart will
-        stay available during this session.
+        Review your Titan Coffee Run cart before completing your order.
       </p>
 
-      <div class="order-layout">
-        <section class="order-panel">
-          <h3>Coffee Menu</h3>
-          <div id="menuList" class="menu-list"></div>
-        </section>
-
-        <section class="order-panel">
-          <h3>Current Cart</h3>
-          <p id="cartMessage" class="helper-message"></p>
-          <div id="cartSummary"></div>
-        </section>
-      </div>
+      <section class="order-panel">
+        <h3>Order Review</h3>
+        <p id="checkoutMessage" class="helper-message"></p>
+        <div id="checkoutSummary"></div>
+      </section>
 
       <div class="button-row">
-        <a href="index.html" class="button-link">Return Home</a>
-        <a href="checkout.html" class="button-link" id="checkoutLink">Proceed to Checkout</a>
+        <a href="order.html" class="button-link">Back to Order</a>
       </div>
     </section>
   </main>
@@ -59,6 +50,6 @@
   </footer>
 
   <script type="module" src="js/auth-ui.js"></script>
-  <script type="module" src="js/cart.js"></script>
+  <script type="module" src="js/checkout.js"></script>
 </body>
 </html>

@@ -3,84 +3,21 @@ import {
     setRedirectAfterLogin
 } from "./modules/SessionManager.js";
 
-const CART_STORAGE_KEY = "titanCoffeeRunCart";
+import {
+    CartStorage,
+    Order,
+    Product,
+    formatCurrency
+} from "./modules/CartStorage.js";
 
-class Product {
-    constructor(name, price) {
-        this.name = name;
-        this.price = price;
-    }
-
-    toJSON() {
-        return {
-            name: this.name,
-            price: this.price
-        };
-    }
-
-    static fromJSON(data) {
-        return new Product(data.name, data.price);
-    }
-}
-
-class Order {
-    constructor(date, product, size, quantity) {
-        this.date = date;
-        this.product = product;
-        this.size = size;
-        this.quantity = quantity;
-    }
-
-    getLineTotal() {
-        return this.product.price * this.quantity;
-    }
-
-    toJSON() {
-        return {
-            date: this.date,
-            product: this.product.toJSON(),
-            size: this.size,
-            quantity: this.quantity
-        };
-    }
-
-    static fromJSON(data) {
-        return new Order(
-            data.date,
-            Product.fromJSON(data.product),
-            data.size,
-            data.quantity
-        );
-    }
-}
-
-class CartStorage {
-    constructor(storageKey = CART_STORAGE_KEY) {
-        this.storageKey = storageKey;
-    }
-
-    getOrders() {
-        const ordersJSON = sessionStorage.getItem(this.storageKey);
-
-        if (!ordersJSON) {
-            return [];
-        }
-
-        try {
-            const orderData = JSON.parse(ordersJSON);
-            return orderData.map((item) => Order.fromJSON(item));
-        } catch (error) {
-            console.error("Unable to parse cart data:", error);
-            sessionStorage.removeItem(this.storageKey);
-            return [];
-        }
-    }
-
-    saveOrders(orders) {
-        const plainOrders = orders.map((order) => order.toJSON());
-        sessionStorage.setItem(this.storageKey, JSON.stringify(plainOrders));
-    }
-}
+// Product and Order are defined in the shared cart module, then re-exported here
+// because Assignment 6 specifically names cart.js as the cart script.
+export {
+    CartStorage,
+    Order,
+    Product,
+    formatCurrency
+};
 
 const menuProducts = [
     new Product("Titan House Coffee", 3.50),
@@ -89,10 +26,12 @@ const menuProducts = [
     new Product("Mocha Cold Brew", 5.25)
 ];
 
-function formatCurrency(amount) {
-    return `$${amount.toFixed(2)}`;
-}
-
+/**
+ * Create one menu card with size, quantity, and add-to-cart controls.
+ * @param {Product} product - Product to display.
+ * @param {CartStorage} cartStorage - Cart storage helper.
+ * @returns {HTMLElement}
+ */
 function createMenuCard(product, cartStorage) {
     const card = document.createElement("article");
     card.className = "menu-item-card";
@@ -146,9 +85,9 @@ function createMenuCard(product, cartStorage) {
     addButton.textContent = "Add to Cart";
 
     addButton.addEventListener("click", () => {
-        const quantity = Number.parseInt(quantityInput.value, 10);
+        const quantity = Number(quantityInput.value);
 
-        if (Number.isNaN(quantity) || quantity < 1) {
+        if (!Number.isInteger(quantity) || quantity < 1) {
             quantityInput.value = "1";
             return;
         }
@@ -179,6 +118,11 @@ function createMenuCard(product, cartStorage) {
     return card;
 }
 
+/**
+ * Display all coffee products on the order page.
+ * @param {CartStorage} cartStorage - Cart storage helper.
+ * @returns {void}
+ */
 function renderMenu(cartStorage) {
     const menuList = document.getElementById("menuList");
     menuList.innerHTML = "";
@@ -188,25 +132,37 @@ function renderMenu(cartStorage) {
     });
 }
 
+/**
+ * Display the current cart and total on the order page.
+ * @param {CartStorage} cartStorage - Cart storage helper.
+ * @returns {void}
+ */
 function renderCartSummary(cartStorage) {
     const cartMessage = document.getElementById("cartMessage");
     const cartSummary = document.getElementById("cartSummary");
+    const checkoutLink = document.getElementById("checkoutLink");
     const orders = cartStorage.getOrders();
 
     cartSummary.innerHTML = "";
 
     if (orders.length === 0) {
         cartMessage.textContent = "Your cart is empty.";
+        checkoutLink.classList.add("disabled-link");
+        checkoutLink.setAttribute("aria-disabled", "true");
+        checkoutLink.tabIndex = -1;
         return;
     }
 
+    checkoutLink.classList.remove("disabled-link");
+    checkoutLink.setAttribute("aria-disabled", "false");
+    checkoutLink.tabIndex = 0;
     cartMessage.textContent = `${orders.length} item(s) currently in your cart.`;
 
     const table = document.createElement("table");
     table.className = "cart-list";
 
     const headerRow = document.createElement("tr");
-    ["Item", "Size", "Quantity", "Line Total"].forEach((headingText) => {
+    ["Item", "Size", "Quantity", "Line Total", "Action"].forEach((headingText) => {
         const heading = document.createElement("th");
         heading.textContent = headingText;
         headerRow.appendChild(heading);
@@ -219,22 +175,34 @@ function renderCartSummary(cartStorage) {
     const tbody = document.createElement("tbody");
     let orderTotal = 0;
 
-    orders.forEach((order) => {
+    orders.forEach((order, index) => {
         const row = document.createElement("tr");
         const itemCell = document.createElement("td");
         const sizeCell = document.createElement("td");
         const quantityCell = document.createElement("td");
         const priceCell = document.createElement("td");
+        const actionCell = document.createElement("td");
+        const removeButton = document.createElement("button");
 
         itemCell.textContent = order.product.name;
         sizeCell.textContent = order.size;
         quantityCell.textContent = order.quantity.toString();
         priceCell.textContent = formatCurrency(order.getLineTotal());
+        removeButton.type = "button";
+        removeButton.className = "remove-cart-button";
+        removeButton.textContent = "Remove";
+
+        removeButton.addEventListener("click", () => {
+            cartStorage.removeOrder(index);
+            renderCartSummary(cartStorage);
+        });
 
         row.appendChild(itemCell);
         row.appendChild(sizeCell);
         row.appendChild(quantityCell);
         row.appendChild(priceCell);
+        actionCell.appendChild(removeButton);
+        row.appendChild(actionCell);
 
         tbody.appendChild(row);
         orderTotal += order.getLineTotal();
@@ -264,6 +232,13 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContent.style.display = "block";
     renderMenu(cartStorage);
     renderCartSummary(cartStorage);
+
+    const checkoutLink = document.getElementById("checkoutLink");
+    checkoutLink.addEventListener("click", (event) => {
+        if (checkoutLink.getAttribute("aria-disabled") === "true") {
+            event.preventDefault();
+        }
+    });
 
     console.log("Cart page ready.");
 });

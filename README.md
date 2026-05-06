@@ -1,10 +1,10 @@
-# Titan Coffee Run - Account Management and Sales Dashboard
+# Titan Coffee Run - Account Management, Sales Dashboard, and Order Flow
 
 ## Overview
 
-This project is a client-side JavaScript application developed for SPC COP2803. It simulates a basic account management system for the Titan Coffee Run website and includes an administrator-only sales dashboard.
+This project is a client-side JavaScript application developed for SPC COP2803. It simulates a basic account management system for the Titan Coffee Run website and includes an administrator-only sales dashboard plus a customer coffee order flow.
 
-The application includes user registration, login, logout, session handling, password management, and an interactive quarterly sales visualization using browser storage and ES6 modules.
+The application includes user registration, login, logout, session handling, password management, an interactive quarterly sales visualization, and a session-based cart and checkout review page using browser storage and ES6 modules.
 
 ---
 
@@ -24,13 +24,15 @@ The application includes user registration, login, logout, session handling, pas
 * Error handling for invalid email or password
 * Session storage for logged-in users
 * Automatic redirect after successful login
+* Regular users are directed to the order flow
 * Supports the Assignment 5 administrator login for the sales dashboard
 
 ### Logout
 
-* Clears session storage
+* Clears the current logged-in user session
 * Redirects user to login page
 * Updates navigation state across pages
+* Cart items remain in sessionStorage during the same browser session
 
 ### Password Management
 
@@ -40,9 +42,10 @@ The application includes user registration, login, logout, session handling, pas
 
 ### Navigation State
 
-* Login, Logout, Change Password, and Sales links update dynamically
+* Login, Logout, Change Password, Sales, and Order links update dynamically
 * Authenticated users see only relevant navigation options
 * The Sales link appears only for the administrator account
+* The Order link appears for logged-in users
 
 ### Sales Dashboard
 
@@ -52,10 +55,22 @@ The application includes user registration, login, logout, session handling, pas
 * Reset and reload chart behavior
 * Hover emphasis for sales values
 
+### Order and Checkout Flow
+
+* Logged-in users can access the coffee order page
+* Coffee menu items are created with a `Product` class
+* Cart entries are created with an `Order` class containing date, product, size, and quantity
+* Users can select size and quantity before adding items to the cart
+* Cart display updates immediately when items are added or removed
+* Cart data persists during the browser session using `sessionStorage`
+* Checkout page displays item name, size, quantity, item price, line total, and final total
+* Checkout is disabled from the order page when the cart is empty
+
 ### Access Control
 
 * Logged-out users are redirected to login for protected pages
 * Non-admin logged-in users are redirected to an access denied page
+* Direct access to order and checkout pages requires login
 
 ### Forgot Password (Informational)
 
@@ -85,7 +100,9 @@ The application includes user registration, login, logout, session handling, pas
 * **sessionStorage**
   * Stores the currently logged-in user
   * Stores the redirect target after login for protected pages
-  * Cleared on logout or browser close
+  * Stores the current shopping cart during the browser session
+  * Current user data is cleared on logout
+  * Cart data remains until the browser session ends or the cart is changed
 
 ---
 
@@ -100,6 +117,8 @@ change-password.html
 forgot-password.html
 sales.html
 access-denied.html
+order.html
+checkout.html
 
 css/
   style.css
@@ -110,7 +129,10 @@ js/
   login.js
   change-password.js
   sales-graph.js
+  cart.js
+  checkout.js
   modules/
+    CartStorage.js
     FormValidator.js
     SessionManager.js
     StorageManager.js
@@ -129,6 +151,14 @@ The project uses browser storage instead of a backend. This simplifies developme
 
 The sales dashboard uses regular HTML elements styled with CSS transitions instead of Canvas or SVG. This approach matched the existing project structure better and kept the graph easier to debug, style, and explain for this class project.
 
+### Cart Storage Approach
+
+The order cart uses `sessionStorage` so items remain available during the user's browser session. The cart logic is kept in a small storage helper module so the data source can be changed more easily in a later assignment.
+
+### Checkout Scope
+
+The checkout page is a review page for this assignment. It displays the cart details and final total, but it does not process payment because real checkout processing would require backend support.
+
 ### Logged-In Password Reset
 
 A traditional password reset requires email verification and backend support. Since this project is client-side only, password changes are limited to authenticated users.
@@ -141,6 +171,7 @@ Logic is separated into reusable modules:
 * persistent storage management
 * session management
 * user model
+* cart/order storage
 
 This improves readability and maintainability.
 
@@ -159,6 +190,7 @@ This application is not intended for production use. Limitations include:
 * no secure authentication tokens
 * no email-based password reset
 * client-side admin access rules
+* cart and checkout data stored in browser session storage only
 
 A real-world system would use:
 
@@ -179,6 +211,8 @@ AI was used to:
 * explore password security concepts
 * design user-friendly authentication flows
 * review and refine the sales dashboard flow and interaction design
+* plan and review the Assignment 6 order and checkout flow
+* debug cart edge cases found during browser testing
 
 ### Key Insights
 
@@ -187,6 +221,7 @@ AI was used to:
 * Storing password history should use hashed values, not plain text
 * Different reset methods (email, SMS, MFA) impact usability and security differently
 * Simple DOM elements plus CSS transitions can satisfy animation requirements without needing a graphics API
+* Building the order flow in small tested steps made the checkout feature easier to debug
 
 ---
 
@@ -220,3 +255,4 @@ AI could not fully replace testing the project in my own browser and checking ho
 ## Conclusion
 
 This project demonstrates a complete client-side account management workflow plus an administrator-only sales dashboard using modern JavaScript techniques. While simplified for learning purposes, it reflects key concepts used in real-world web applications, including validation, session handling, protected routes, modular design, and interactive UI behavior.
+The Assignment 6 order flow adds object-oriented cart items, session-based cart persistence, dynamic DOM updates, and checkout total calculation.

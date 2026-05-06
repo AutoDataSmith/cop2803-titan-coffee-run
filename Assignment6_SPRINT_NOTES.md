@@ -14,7 +14,7 @@
 
 - A logged-in user can access an order page after login
 - The order page includes a linked `js/cart.js` file
-- `cart.js` includes both a `Product` class and an `Order` class
+- `cart.js` provides access to both a `Product` class and an `Order` class
 - Users can select coffee items, sizes, and quantities
 - The shopping cart updates immediately when items are added
 - Cart data remains available during the user's session
@@ -45,6 +45,7 @@
   - size selection
   - quantity
 - Keep the class structure simple and easy to explain for class review
+- Keep the shared cart module connected through `cart.js` so the order and checkout pages can use the same cart structure
 
 ---
 

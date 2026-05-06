@@ -74,6 +74,10 @@ section {
   border-radius: 8px;
 }
 
+.wide-section {
+  max-width: 1000px;
+}
+
 .form-row {
   display: flex;
   flex-direction: column;
@@ -134,6 +138,7 @@ section {
 
 .button-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 20px;
 }
@@ -168,6 +173,13 @@ section {
 .button-link:hover {
   background-color: #5a3f2d;
   text-decoration: none;
+}
+
+.button-link.disabled-link {
+  background-color: #a89b91;
+  color: white;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Disabled button state for Register until form is valid */
@@ -312,6 +324,7 @@ section {
   border: 2px solid #6f4e37;
   border-radius: 8px;
   background-color: #fdfaf7;
+  overflow-x: auto;
 }
 
 .menu-list {
@@ -370,6 +383,24 @@ section {
 .cart-total {
   margin-top: 16px;
   font-weight: bold;
+}
+
+.checkout-total {
+  font-size: 1.1rem;
+  color: #6f4e37;
+}
+
+.remove-cart-button {
+  padding: 6px 10px;
+  border: 1px solid #b00020;
+  border-radius: 4px;
+  background-color: white;
+  color: #b00020;
+  cursor: pointer;
+}
+
+.remove-cart-button:hover {
+  background-color: #fdecef;
 }
 
 /* this adds and alternating row color for readability */

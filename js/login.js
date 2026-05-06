@@ -18,6 +18,17 @@ function createSessionUser(user, isAdmin = false) {
     };
 }
 
+function getCustomerRedirectTarget() {
+    const redirectTarget = getRedirectAfterLogin();
+
+    // If checkout forced the login, send the customer back to the order page first.
+    if (redirectTarget === "checkout.html") {
+        return "order.html";
+    }
+
+    return redirectTarget || "order.html";
+}
+
 document.addEventListener("DOMContentLoaded", () => {    
     
     const currentUser = getCurrentUser();
@@ -104,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const sessionUser = createSessionUser(user, false);
         setCurrentUser(sessionUser);
         
-        const redirectTarget = getRedirectAfterLogin() || "index.html";
+        const redirectTarget = getCustomerRedirectTarget();
         clearRedirectAfterLogin();
 
         // redirect after short delay
