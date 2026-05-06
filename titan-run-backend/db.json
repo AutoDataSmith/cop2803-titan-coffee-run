@@ -1,0 +1,54 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "date": "4/22/2021",
+      "product": {
+        "name": "Latte",
+        "price": 8.00,
+        "size": "small",
+        "quantity": 1
+      }
+    },
+    {
+      "id": 2,
+      "date": "4/23/2021",
+      "product": {
+        "name": "Cappuccino",
+        "price": 10.00,
+        "size": "large",
+        "quantity": 5
+      }
+    },
+    {
+      "id": 3,
+      "date": "4/24/2021",
+      "product": {
+        "name": "Titan House Coffee",
+        "price": 3.50,
+        "size": "medium",
+        "quantity": 2
+      }
+    },
+    {
+      "id": 4,
+      "date": "4/25/2021",
+      "product": {
+        "name": "Vanilla Latte",
+        "price": 4.75,
+        "size": "small",
+        "quantity": 3
+      }
+    },
+    {
+      "id": 5,
+      "date": "4/26/2021",
+      "product": {
+        "name": "Mocha Cold Brew",
+        "price": 5.25,
+        "size": "large",
+        "quantity": 2
+      }
+    }
+  ]
+}

@@ -14,9 +14,9 @@ AI helped me read through the Assignment 7 instructions and compare them to my c
 
 AI helped identify that the existing Assignment 6 cart and checkout flow already works with `sessionStorage`. Since Assignment 7 asks for REST API data retrieval but does not clearly require replacing the live cart storage, the planned approach is to add an API-backed order display instead of rewriting the completed cart flow.
 
-### Backend Planning
+### Backend Planning and Setup
 
-AI helped plan a separate JSON Server backend folder named `titan-run-backend`. This keeps the mock REST API separate from the frontend project and matches the assignment submission structure.
+AI helped plan a JSON Server backend folder named `titan-run-backend` inside the existing project repository. This keeps the mock REST API separate from the frontend files while still allowing Git to track both parts of the assignment together.
 
 ### Frontend Integration Planning
 
@@ -40,4 +40,4 @@ For Assignment 7, I am using AI selectively instead of asking it to generate eve
 - Planning small, reviewable commits
 - Drafting testing and documentation files
 
-I still need to run the project locally, verify the JSON Server endpoint in the browser, test the frontend with Live Server, and confirm that the final behavior matches the assignment requirements.
+I still need to install backend dependencies, run the project locally, verify the JSON Server endpoint in the browser, test the frontend with Live Server, and confirm that the final behavior matches the assignment requirements.

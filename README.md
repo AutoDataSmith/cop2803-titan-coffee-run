@@ -1,10 +1,10 @@
-# Titan Coffee Run - Account Management, Sales Dashboard, Order Flow, and REST API Planning
+# Titan Coffee Run - Account Management, Sales Dashboard, Order Flow, and REST API
 
 ## Overview
 
 This project is a client-side JavaScript application developed for SPC COP2803. It simulates a basic account management system for the Titan Coffee Run website and includes an administrator-only sales dashboard plus a customer coffee order flow.
 
-The application includes user registration, login, logout, session handling, password management, an interactive quarterly sales visualization, and a session-based cart and checkout review page using browser storage and ES6 modules. Assignment 7 work is adding a JSON Server backend so order data can also be retrieved through a local REST API.
+The application includes user registration, login, logout, session handling, password management, an interactive quarterly sales visualization, and a session-based cart and checkout review page using browser storage and ES6 modules. Assignment 7 adds a JSON Server backend folder so order data can also be retrieved through a local REST API.
 
 ---
 
@@ -68,7 +68,7 @@ The application includes user registration, login, logout, session handling, pas
 
 ### Assignment 7 REST API Work
 
-* Adds planning for a separate JSON Server backend project
+* Adds a separate JSON Server backend folder inside this repository
 * Backend endpoint will return order data from `http://localhost:3000/orders`
 * Frontend work will use the Fetch API to retrieve order data
 * Frontend error handling will display a message if JSON Server is unavailable
@@ -96,7 +96,7 @@ The application includes user registration, login, logout, session handling, pas
 * Browser Storage APIs:
   * localStorage
   * sessionStorage
-* JSON Server planned for Assignment 7 REST API data retrieval
+* JSON Server for Assignment 7 REST API data retrieval
 
 ---
 
@@ -149,14 +149,15 @@ js/
     User.js
 ```
 
-Assignment 7 also uses a separate backend folder outside this frontend project:
+Assignment 7 also uses a separate backend folder inside this repository:
 
 ```text
 titan-run-backend/
   package.json
-  package-lock.json
   db.json
 ```
+
+After running `npm install` in `titan-run-backend`, the backend will also include `package-lock.json` and `node_modules`.
 
 ---
 

@@ -1,0 +1,19 @@
+{
+  "name": "titan-run-backend",
+  "version": "1.0.0",
+  "description": "JSON Server backend for the Titan Coffee Run Assignment 7 REST API.",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server --watch db.json"
+  },
+  "keywords": [
+    "json-server",
+    "titan-coffee-run",
+    "cop2803"
+  ],
+  "author": "Ken Smith",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}

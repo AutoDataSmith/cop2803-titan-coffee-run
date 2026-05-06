@@ -32,9 +32,9 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 
 ### 1. Backend Project Setup
 
-- Create a separate `titan-run-backend` folder outside the frontend project
+- Create a separate `titan-run-backend` folder inside the current project repository
 - Initialize the backend with `npm init -y`
-- Install JSON Server
+- Add JSON Server as a backend dependency
 - Add a `db.json` file with an `orders` array
 - Include at least five total order records
 
@@ -95,7 +95,7 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 
 - Keep Assignment 7 additive
 - Avoid unnecessary refactoring of the Assignment 6 cart storage code
-- Use a separate backend folder to match the assignment submission structure
+- Use a separate backend folder inside the current repository so Git can track the frontend and backend together
 - Make small, reviewable commits
 - Document testing results as features are completed
 - Use AI for planning, review, and debugging while keeping implementation decisions understandable
@@ -108,4 +108,5 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 - The assignment mentions an `orders-module.js` file, but this project does not currently have one; the new API script can serve as the equivalent frontend orders module
 - The existing `menuProducts` array in `cart.js` is a coffee menu, not stored order history, so it should not be removed just to satisfy the hardcoded order-array requirement
 - The existing `sessionStorage` cart should stay in place unless the assignment feedback requires converting the live cart to backend storage
+- The backend folder is inside this repository rather than in a second Git repository, which keeps Assignment 7 easier to manage
 - Error handling must be tested by stopping JSON Server on purpose

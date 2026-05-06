@@ -6,14 +6,17 @@ Assignment 7 adds a local mock backend using JSON Server and updates the Titan C
 
 The completed Assignment 6 project already had a working customer order/cart/checkout flow using `sessionStorage`. For Assignment 7, I am keeping that flow in place and adding API-based order retrieval as an additional feature. This avoids rewriting the working cart behavior unless the assignment specifically requires it.
 
-## Planned Backend
+## Backend Setup
 
-The backend will be created as a separate folder named `titan-run-backend`. It will include:
+The backend has been added as a separate folder named `titan-run-backend` inside the same project repository. This keeps the frontend and backend together for Git tracking while still separating the mock REST API files from the frontend files.
+
+It includes:
 
 - `package.json`
-- `package-lock.json`
 - `db.json`
 - JSON Server as a dependency
+
+After running `npm install` inside the backend folder, it will also include `package-lock.json` and `node_modules`.
 
 The order endpoint will be:
 
@@ -21,7 +24,7 @@ The order endpoint will be:
 http://localhost:3000/orders
 ```
 
-The `db.json` file will include at least five order records with unique values for `id`, `date`, and product details.
+The `db.json` file includes at least five order records with unique values for `id`, `date`, and product details.
 
 ## Planned Frontend Update
 
@@ -63,4 +66,8 @@ The final submission should include both the frontend project and the backend pr
 npm install
 ```
 
-inside the `titan-run-backend` folder before starting JSON Server.
+inside the `titan-run-backend` folder before starting JSON Server. The backend can then be started with:
+
+```text
+npm start
+```
