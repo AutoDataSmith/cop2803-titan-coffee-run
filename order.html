@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Access denied for Titan Coffee Run sales dashboard.">
-  <title>Access Denied | Titan Coffee Run</title>
+  <meta name="description" content="Place a coffee order with Titan Coffee Run.">
+  <title>Order Coffee | Titan Coffee Run</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,17 +26,30 @@
     </nav>
   </header>
 
-  <main>
-    <section class="form-section">
-      <h2>Access Denied</h2>
+  <main style="display: none;">
+    <section class="form-section wide-section">
+      <h2>Order Coffee</h2>
       <p>
-        You are signed in, but your account does not have permission to view the sales dashboard.
+        Choose your coffee, select a size, and add items to your cart. Your current cart will
+        stay available during this session.
       </p>
-      <p>
-        This page is only available to the administrator account.
-      </p>
+
+      <div class="order-layout">
+        <section class="order-panel">
+          <h3>Coffee Menu</h3>
+          <div id="menuList" class="menu-list"></div>
+        </section>
+
+        <section class="order-panel">
+          <h3>Current Cart</h3>
+          <p id="cartMessage" class="helper-message"></p>
+          <div id="cartSummary"></div>
+        </section>
+      </div>
+
       <div class="button-row">
         <a href="index.html" class="button-link">Return Home</a>
+        <a href="checkout.html" class="button-link" id="checkoutLink">Proceed to Checkout</a>
       </div>
     </section>
   </main>
@@ -46,5 +59,6 @@
   </footer>
 
   <script type="module" src="js/auth-ui.js"></script>
+  <script type="module" src="js/cart.js"></script>
 </body>
 </html>

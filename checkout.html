@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Access denied for Titan Coffee Run sales dashboard.">
-  <title>Access Denied | Titan Coffee Run</title>
+  <meta name="description" content="Review your Titan Coffee Run order before checkout.">
+  <title>Checkout | Titan Coffee Run</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,17 +26,21 @@
     </nav>
   </header>
 
-  <main>
-    <section class="form-section">
-      <h2>Access Denied</h2>
+  <main style="display: none;">
+    <section class="form-section wide-section">
+      <h2>Checkout</h2>
       <p>
-        You are signed in, but your account does not have permission to view the sales dashboard.
+        Review your Titan Coffee Run cart before completing your order.
       </p>
-      <p>
-        This page is only available to the administrator account.
-      </p>
+
+      <section class="order-panel">
+        <h3>Order Review</h3>
+        <p id="checkoutMessage" class="helper-message"></p>
+        <div id="checkoutSummary"></div>
+      </section>
+
       <div class="button-row">
-        <a href="index.html" class="button-link">Return Home</a>
+        <a href="order.html" class="button-link">Back to Order</a>
       </div>
     </section>
   </main>
@@ -46,5 +50,6 @@
   </footer>
 
   <script type="module" src="js/auth-ui.js"></script>
+  <script type="module" src="js/checkout.js"></script>
 </body>
 </html>

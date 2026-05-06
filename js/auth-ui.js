@@ -29,12 +29,14 @@ function updateAuthUI() {
     const registerLink = document.querySelector('a[href="register.html"]');
     const resetPasswordLink = document.getElementById("resetPasswordLink");
     const salesLink = document.getElementById("salesLink");
+    const orderLink = document.getElementById("orderLink");
 
     setLinkVisibility(loginLink, !isLoggedIn);
     setLinkVisibility(logoutLink, isLoggedIn);
     setLinkVisibility(registerLink, !isLoggedIn);
     setLinkVisibility(resetPasswordLink, isLoggedIn);
     setLinkVisibility(salesLink, isAdmin);
+    setLinkVisibility(orderLink, isLoggedIn);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
