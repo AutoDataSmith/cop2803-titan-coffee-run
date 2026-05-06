@@ -27,5 +27,10 @@
    The project now has separate user storage and cart/order storage, so clearer naming may help later.
    This is deferred because renaming it now could risk the existing login, registration, and password flows.
 
-9) The Current Cart panel may be slightly narrow when several items are added. Might need a style pass to make it look better
+9) Storage-related file names are becoming confusing as the project grows.
+   StorageManager.js uses localStorage for registered users.
+   SessionManager.js uses sessionStorage for login and redirect state.
+   CartStorage.js uses sessionStorage for cart/order data.
+   A future cleanup could organize these into a clearer storage folder and naming pattern.
 
+10) The Current Cart panel may be slightly narrow when several items are added. Might need a style pass to make it look better
