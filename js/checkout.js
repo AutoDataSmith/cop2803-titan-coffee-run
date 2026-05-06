@@ -5,7 +5,8 @@ import {
 
 import {
     CartStorage,
-    formatCurrency
+    formatCurrency,
+    getCartStorageKey
 } from "./modules/CartStorage.js";
 
 /**
@@ -91,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const mainContent = document.querySelector("main");
-    const cartStorage = new CartStorage();
+    const cartStorage = new CartStorage(getCartStorageKey(currentUser));
 
     mainContent.style.display = "block";
     renderCheckout(cartStorage);

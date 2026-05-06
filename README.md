@@ -32,7 +32,7 @@ The application includes user registration, login, logout, session handling, pas
 * Clears the current logged-in user session
 * Redirects user to login page
 * Updates navigation state across pages
-* Cart items remain in sessionStorage during the same browser session
+* Cart items remain in sessionStorage for the same user during the same browser session
 
 ### Password Management
 
@@ -62,7 +62,7 @@ The application includes user registration, login, logout, session handling, pas
 * Cart entries are created with an `Order` class containing date, product, size, and quantity
 * Users can select size and quantity before adding items to the cart
 * Cart display updates immediately when items are added or removed
-* Cart data persists during the browser session using `sessionStorage`
+* Cart data persists during the browser session using user-specific `sessionStorage` keys
 * Checkout page displays item name, size, quantity, item price, line total, and final total
 * Checkout is disabled from the order page when the cart is empty
 
@@ -100,9 +100,9 @@ The application includes user registration, login, logout, session handling, pas
 * **sessionStorage**
   * Stores the currently logged-in user
   * Stores the redirect target after login for protected pages
-  * Stores the current shopping cart during the browser session
+  * Stores the current shopping cart during the browser session with a user-specific cart key
   * Current user data is cleared on logout
-  * Cart data remains until the browser session ends or the cart is changed
+  * Cart data remains until the browser session ends or that user's cart is changed
 
 ---
 
@@ -153,7 +153,7 @@ The sales dashboard uses regular HTML elements styled with CSS transitions inste
 
 ### Cart Storage Approach
 
-The order cart uses `sessionStorage` so items remain available during the user's browser session. The cart logic is kept in a small storage helper module so the data source can be changed more easily in a later assignment.
+The order cart uses `sessionStorage` so items remain available during the user's browser session. Cart keys include the logged-in user's email so one user's cart does not appear for another user. The cart logic is kept in a small storage helper module so the data source can be changed more easily in a later assignment.
 
 ### Checkout Scope
 

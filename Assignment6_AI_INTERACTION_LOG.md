@@ -24,7 +24,7 @@ AI helped me build the checkout review page after I confirmed the assignment did
 
 ### Testing and Debugging
 
-AI helped me document test cases and debug issues found during browser testing. Examples included invalid quantity handling, removing cart items, empty cart behavior, checkout redirect behavior, and admin login regression testing.
+AI helped me document test cases and debug issues found during browser testing. Examples included invalid quantity handling, removing cart items, empty cart behavior, checkout redirect behavior, admin login regression testing, registration repair, and a cart isolation bug between users.
 
 ### Scope Control
 

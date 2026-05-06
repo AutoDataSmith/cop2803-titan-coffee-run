@@ -1,6 +1,16 @@
 const CART_STORAGE_KEY = "titanCoffeeRunCart";
 
 /**
+ * Build a cart key for the currently logged-in user.
+ * @param {Object} user - Current session user.
+ * @returns {string}
+ */
+export function getCartStorageKey(user) {
+    const userEmail = user.email.trim().toLowerCase();
+    return `${CART_STORAGE_KEY}-${userEmail}`;
+}
+
+/**
  * Represents one coffee product on the menu.
  */
 export class Product {

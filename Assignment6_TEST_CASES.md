@@ -39,10 +39,13 @@ Browser/server: Live Server
 | A6-24 | Add an item after cart was empty | Proceed to Checkout becomes available | Passed |
 | A6-25 | Remove all cart items | Proceed to Checkout becomes disabled again | Passed |
 | A6-26 | Log in after being redirected from checkout | Regular user lands on `order.html` instead of `checkout.html` | Passed |
-| A6-27 | Log out and log back in after adding items | Cart items still persist during the browser session | Passed |
+| A6-27 | Log out and log back in as the same user after adding items | Cart items still persist for the same user during the browser session | Passed |
+| A6-28 | Register and log in as a different user after another user added cart items | Previous user's cart items do not appear for the new user | Passed |
 
 ## Notes
 
 - The Current Cart panel may be slightly narrow when several items are added.
 - This is not currently blocking functionality, but it can be considered for polish after checkout is complete.
-- Cart items intentionally remain in `sessionStorage` after logout for this class project.
+- Cart items intentionally remain in `sessionStorage` after logout for the same user in this class project.
+- Cart storage is scoped by user email so a different logged-in user does not inherit another user's cart.
+- Cart persistence was tested across three users, and each user's cart activity was preserved separately.

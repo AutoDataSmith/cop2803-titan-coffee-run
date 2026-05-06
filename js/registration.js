@@ -26,6 +26,11 @@ function renderSimpleSummaryTable(userData) {
     const container = document.getElementById("resultsContainer");
     container.innerHTML = "";
 
+    const successMessage = document.createElement("p");
+    successMessage.className = "helper-message valid";
+    successMessage.textContent = "Registration successful. Redirecting to login...";
+    container.appendChild(successMessage);
+
     const table = document.createElement("table");
     table.className = "validation-table";
 
@@ -43,6 +48,33 @@ function renderSimpleSummaryTable(userData) {
         row.appendChild(fieldCell);
         row.appendChild(valueCell);
 
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    container.appendChild(table);
+}
+
+function renderValidationTable(validationResults) {
+    const container = document.getElementById("resultsContainer");
+    container.innerHTML = "";
+
+    const table = document.createElement("table");
+    table.className = "validation-table";
+
+    const tbody = document.createElement("tbody");
+
+    validationResults.forEach((result) => {
+        const row = document.createElement("tr");
+        const fieldCell = document.createElement("td");
+        const messageCell = document.createElement("td");
+
+        fieldCell.textContent = result.field;
+        messageCell.textContent = result.message;
+        messageCell.className = result.valid ? "status-valid" : "status-invalid";
+
+        row.appendChild(fieldCell);
+        row.appendChild(messageCell);
         tbody.appendChild(row);
     });
 
@@ -372,6 +404,10 @@ document.addEventListener("DOMContentLoaded", () => {
             passwordStrength.textContent = "";
             passwordMatch.textContent = "";
             registerButton.disabled = true;
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 2500);
             
         } else {
             formValidator.showError("emailHelper", "This email is already registered");

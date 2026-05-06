@@ -7,7 +7,8 @@ import {
     CartStorage,
     Order,
     Product,
-    formatCurrency
+    formatCurrency,
+    getCartStorageKey
 } from "./modules/CartStorage.js";
 
 // Product and Order are defined in the shared cart module, then re-exported here
@@ -16,7 +17,8 @@ export {
     CartStorage,
     Order,
     Product,
-    formatCurrency
+    formatCurrency,
+    getCartStorageKey
 };
 
 const menuProducts = [
@@ -232,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const mainContent = document.querySelector("main");
-    const cartStorage = new CartStorage();
+    const cartStorage = new CartStorage(getCartStorageKey(currentUser));
 
     mainContent.style.display = "block";
     renderMenu(cartStorage);
