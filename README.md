@@ -1,10 +1,10 @@
-# Titan Coffee Run - Account Management, Sales Dashboard, and Order Flow
+# Titan Coffee Run - Account Management, Sales Dashboard, Order Flow, and REST API Planning
 
 ## Overview
 
 This project is a client-side JavaScript application developed for SPC COP2803. It simulates a basic account management system for the Titan Coffee Run website and includes an administrator-only sales dashboard plus a customer coffee order flow.
 
-The application includes user registration, login, logout, session handling, password management, an interactive quarterly sales visualization, and a session-based cart and checkout review page using browser storage and ES6 modules.
+The application includes user registration, login, logout, session handling, password management, an interactive quarterly sales visualization, and a session-based cart and checkout review page using browser storage and ES6 modules. Assignment 7 work is adding a JSON Server backend so order data can also be retrieved through a local REST API.
 
 ---
 
@@ -66,6 +66,14 @@ The application includes user registration, login, logout, session handling, pas
 * Checkout page displays item name, size, quantity, item price, line total, and final total
 * Checkout is disabled from the order page when the cart is empty
 
+### Assignment 7 REST API Work
+
+* Adds planning for a separate JSON Server backend project
+* Backend endpoint will return order data from `http://localhost:3000/orders`
+* Frontend work will use the Fetch API to retrieve order data
+* Frontend error handling will display a message if JSON Server is unavailable
+* Existing Assignment 6 cart and checkout behavior should remain in place
+
 ### Access Control
 
 * Logged-out users are redirected to login for protected pages
@@ -88,6 +96,7 @@ The application includes user registration, login, logout, session handling, pas
 * Browser Storage APIs:
   * localStorage
   * sessionStorage
+* JSON Server planned for Assignment 7 REST API data retrieval
 
 ---
 
@@ -128,6 +137,7 @@ js/
   banner-slider.js
   login.js
   change-password.js
+  orders-api.js (planned for Assignment 7)
   sales-graph.js
   cart.js
   checkout.js
@@ -137,6 +147,15 @@ js/
     SessionManager.js
     StorageManager.js
     User.js
+```
+
+Assignment 7 also uses a separate backend folder outside this frontend project:
+
+```text
+titan-run-backend/
+  package.json
+  package-lock.json
+  db.json
 ```
 
 ---
@@ -154,6 +173,12 @@ The sales dashboard uses regular HTML elements styled with CSS transitions inste
 ### Cart Storage Approach
 
 The order cart uses `sessionStorage` so items remain available during the user's browser session. Cart keys include the logged-in user's email so one user's cart does not appear for another user. The cart logic is kept in a small storage helper module so the data source can be changed more easily in a later assignment.
+
+### Assignment 7 API Approach
+
+Assignment 7 introduces a local JSON Server backend for REST API practice. The planned approach is additive: keep the working Assignment 6 cart and checkout flow in `sessionStorage`, then add an API-backed order display that retrieves order records from `http://localhost:3000/orders`.
+
+This keeps the project aligned with the assignment goal of practicing client-server communication without unnecessarily rewriting the completed cart flow.
 
 ### Checkout Scope
 
@@ -213,6 +238,8 @@ AI was used to:
 * review and refine the sales dashboard flow and interaction design
 * plan and review the Assignment 6 order and checkout flow
 * debug cart edge cases found during browser testing
+* plan the Assignment 7 JSON Server and REST API integration
+* draft Assignment 7 testing and documentation files
 
 ### Key Insights
 
@@ -222,6 +249,7 @@ AI was used to:
 * Different reset methods (email, SMS, MFA) impact usability and security differently
 * Simple DOM elements plus CSS transitions can satisfy animation requirements without needing a graphics API
 * Building the order flow in small tested steps made the checkout feature easier to debug
+* Adding REST API retrieval as a focused feature is safer than rewriting working cart code without a clear requirement
 
 ---
 
@@ -256,3 +284,4 @@ AI could not fully replace testing the project in my own browser and checking ho
 
 This project demonstrates a complete client-side account management workflow plus an administrator-only sales dashboard using modern JavaScript techniques. While simplified for learning purposes, it reflects key concepts used in real-world web applications, including validation, session handling, protected routes, modular design, and interactive UI behavior.
 The Assignment 6 order flow adds object-oriented cart items, session-based cart persistence, dynamic DOM updates, and checkout total calculation.
+Assignment 7 adds the next step toward a real client-server application by planning a JSON Server backend and REST API order-data retrieval.
