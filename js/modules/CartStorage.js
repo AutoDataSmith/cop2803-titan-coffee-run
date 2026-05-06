@@ -14,7 +14,7 @@ export class Product {
     }
 
     /**
-     * Convert the product to a plain object for storage.
+     * Return the JSON-safe version of this object.
      * @returns {{name: string, price: number}}
      */
     toJSON() {
@@ -60,7 +60,7 @@ export class Order {
     }
 
     /**
-     * Convert the order to a plain object for sessionStorage.
+     * Return the JSON-safe version of this object.
      * @returns {{date: string, product: Object, size: string, quantity: number}}
      */
     toJSON() {
@@ -90,6 +90,10 @@ export class Order {
 /**
  * Handles cart saving and loading.
  * I am keeping this separate because later assignments may use an API instead of sessionStorage.
+ *
+ * Storage pattern:
+ * class instance -> plain storage object -> JSON string
+ * JSON string -> plain storage object -> class instance
  */
 export class CartStorage {
     /**
@@ -112,6 +116,7 @@ export class CartStorage {
 
         try {
             const orderData = JSON.parse(ordersJSON);
+            // JSON gives back plain objects, so rebuild them as Order objects.
             return orderData.map((item) => Order.fromJSON(item));
         } catch (error) {
             console.error("Unable to parse cart data:", error);
@@ -126,6 +131,7 @@ export class CartStorage {
      * @returns {void}
      */
     saveOrders(orders) {
+        // Convert Order instances to plain objects before saving.
         const plainOrders = orders.map((order) => order.toJSON());
         sessionStorage.setItem(this.storageKey, JSON.stringify(plainOrders));
     }

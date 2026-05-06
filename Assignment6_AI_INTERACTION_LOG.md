@@ -29,3 +29,7 @@ AI helped me document test cases and debug issues found during browser testing. 
 ### Scope Control
 
 Some possible improvements were documented but not added, such as duplicate cart row handling and size-based pricing. AI helped me keep those as polish items instead of expanding the assignment too far.
+
+### Naming and Cleanup Discussion
+
+During review, I noticed that `StorageManager.js` handles user storage while `CartStorage.js` handles cart/order storage. AI helped me think through whether to rename files for consistency. I decided to document it as a future cleanup item instead of changing it during final Assignment 6 work.

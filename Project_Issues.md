@@ -10,7 +10,7 @@
     - Redirect to the Login Page with a message that states - "Congratulations, your account is created"
 
 
-4) The register page is still visible for a logged in user. No need to see that is logged in
+4) FIXED ~~~The register page is still visible for a logged in user. No need to see that is logged in~~~
 5) Instead of hiding "Change Password" on the Change-Password.html page, maybe add styling to the NAV that is is the "active" page and do this for all other pages
 
 6) Assignment 6 cart currently adds a duplicate row when the same product and size are added more than once.
@@ -23,5 +23,9 @@
    In a real ordering system, medium and large sizes would probably cost more.
    This is not required for the assignment, but could be improved later.
 
+8) Consider renaming StorageManager.js to something more specific like UserStorage.js.
+   The project now has separate user storage and cart/order storage, so clearer naming may help later.
+   This is deferred because renaming it now could risk the existing login, registration, and password flows.
 
+9) The Current Cart panel may be slightly narrow when several items are added. Might need a style pass to make it look better
 

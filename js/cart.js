@@ -52,6 +52,7 @@ function createMenuCard(product, cartStorage) {
     const sizeLabel = document.createElement("label");
     sizeLabel.textContent = "Size";
 
+    // Build the drop-down for the size selection
     const sizeSelect = document.createElement("select");
     ["Small", "Medium", "Large"].forEach((size) => {
         const option = document.createElement("option");
@@ -87,6 +88,7 @@ function createMenuCard(product, cartStorage) {
     addButton.addEventListener("click", () => {
         const quantity = Number(quantityInput.value);
 
+        // Validate quantity; bad values default back to 1.
         if (!Number.isInteger(quantity) || quantity < 1) {
             quantityInput.value = "1";
             return;
@@ -145,6 +147,7 @@ function renderCartSummary(cartStorage) {
 
     cartSummary.innerHTML = "";
 
+    // empty cart detected: Disable checkout button on an empty cart
     if (orders.length === 0) {
         cartMessage.textContent = "Your cart is empty.";
         checkoutLink.classList.add("disabled-link");
@@ -188,6 +191,8 @@ function renderCartSummary(cartStorage) {
         sizeCell.textContent = order.size;
         quantityCell.textContent = order.quantity.toString();
         priceCell.textContent = formatCurrency(order.getLineTotal());
+        
+        // Build the Remove button for this cart row.
         removeButton.type = "button";
         removeButton.className = "remove-cart-button";
         removeButton.textContent = "Remove";
