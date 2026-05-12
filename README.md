@@ -69,9 +69,9 @@ The application includes user registration, login, logout, session handling, pas
 ### Assignment 7 REST API Work
 
 * Adds a separate JSON Server backend folder inside this repository
-* Backend endpoint will return order data from `http://localhost:3000/orders`
-* Frontend work will use the Fetch API to retrieve order data
-* Frontend error handling will display a message if JSON Server is unavailable
+* Backend endpoint returns order data from `http://localhost:3000/orders`
+* Frontend uses the Fetch API to retrieve order data on the admin sales dashboard
+* Frontend error handling displays a message if JSON Server is unavailable
 * Existing Assignment 6 cart and checkout behavior should remain in place
 
 ### Access Control
@@ -100,6 +100,39 @@ The application includes user registration, login, logout, session handling, pas
 
 ---
 
+## Running Assignment 7
+
+Start the backend from the `titan-run-backend` folder:
+
+```text
+npm install
+npm start
+```
+
+If PowerShell blocks `npm.ps1`, use:
+
+```text
+npm.cmd install
+npm.cmd start
+```
+
+Then verify the REST endpoint:
+
+```text
+http://localhost:3000/orders
+```
+
+Run the frontend from the `titan-run-frontend` folder with Live Server or another local server. Do not open the HTML files with `file://` because this project uses ES6 modules.
+
+To view the admin dashboard and backend order display, log in with:
+
+```text
+Username: admin
+Password: test123
+```
+
+---
+
 ## Storage Design
 
 * **localStorage**
@@ -118,46 +151,46 @@ The application includes user registration, login, logout, session handling, pas
 ## Project Structure
 
 ```text
-index.html
-apply.html
-register.html
-login.html
-change-password.html
-forgot-password.html
-sales.html
-access-denied.html
-order.html
-checkout.html
+titan-run-frontend/
+  index.html
+  apply.html
+  register.html
+  login.html
+  change-password.html
+  forgot-password.html
+  sales.html
+  access-denied.html
+  order.html
+  checkout.html
+  css/
+    style.css
+  img/
+    banner-1.png
+    banner-2.png
+    banner-3.png
+  js/
+    auth-ui.js
+    banner-slider.js
+    login.js
+    change-password.js
+    orders-api.js
+    sales-graph.js
+    cart.js
+    checkout.js
+    modules/
+      CartStorage.js
+      FormValidator.js
+      SessionManager.js
+      StorageManager.js
+      User.js
 
-css/
-  style.css
-
-js/
-  auth-ui.js
-  banner-slider.js
-  login.js
-  change-password.js
-  orders-api.js (planned for Assignment 7)
-  sales-graph.js
-  cart.js
-  checkout.js
-  modules/
-    CartStorage.js
-    FormValidator.js
-    SessionManager.js
-    StorageManager.js
-    User.js
-```
-
-Assignment 7 also uses a separate backend folder inside this repository:
-
-```text
 titan-run-backend/
   package.json
+  package-lock.json
   db.json
 ```
 
-After running `npm install` in `titan-run-backend`, the backend will also include `package-lock.json` and `node_modules`.
+After running `npm install` in `titan-run-backend`, the backend will also include `node_modules`.
 
 ---
 
@@ -177,7 +210,7 @@ The order cart uses `sessionStorage` so items remain available during the user's
 
 ### Assignment 7 API Approach
 
-Assignment 7 introduces a local JSON Server backend for REST API practice. The planned approach is additive: keep the working Assignment 6 cart and checkout flow in `sessionStorage`, then add an API-backed order display that retrieves order records from `http://localhost:3000/orders`.
+Assignment 7 introduces a local JSON Server backend for REST API practice. The approach is additive: keep the working Assignment 6 cart and checkout flow in `sessionStorage`, then add an API-backed order display on the admin sales dashboard that retrieves order records from `http://localhost:3000/orders`.
 
 This keeps the project aligned with the assignment goal of practicing client-server communication without unnecessarily rewriting the completed cart flow.
 

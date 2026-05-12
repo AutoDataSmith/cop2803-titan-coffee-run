@@ -3,6 +3,8 @@ import {
     setRedirectAfterLogin
 } from "./modules/SessionManager.js";
 
+import { loadBackendOrders } from "./orders-api.js";
+
 const salesData = [
     { quarter: "Jan-Mar", amount: 2005.00, color: "#6f4e37" },
     { quarter: "Apr-Jun", amount: 1471.31, color: "#a2673f" },
@@ -119,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mainContent.style.display = "block";
     renderSalesChart();
+    loadBackendOrders();
 
     setTimeout(() => {
         animateBarsToTargetHeights();

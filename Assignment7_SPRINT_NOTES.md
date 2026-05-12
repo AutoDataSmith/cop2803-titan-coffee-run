@@ -18,6 +18,7 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 
 - A separate backend folder exists for JSON Server
 - The backend includes a valid `db.json` file
+- The frontend files are organized in a `titan-run-frontend` folder
 - `db.json` contains at least five orders
 - JSON Server returns order data at `http://localhost:3000/orders`
 - The frontend uses asynchronous JavaScript to request order data
@@ -55,6 +56,7 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 - Parse the response with `.json()`
 - Render the returned order data using DOM methods and `textContent`
 - Avoid inserting API data directly with raw `innerHTML`
+- Call the API module from the admin sales dashboard after admin access is confirmed
 
 ---
 
@@ -69,6 +71,7 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
   - quantity
   - price
 - Keep the display simple and consistent with the existing project style
+- Place the backend order display on `sales.html` so it fits the admin review purpose of the dashboard
 
 ---
 
@@ -96,6 +99,7 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 - Keep Assignment 7 additive
 - Avoid unnecessary refactoring of the Assignment 6 cart storage code
 - Use a separate backend folder inside the current repository so Git can track the frontend and backend together
+- Keep the frontend in `titan-run-frontend` so the final submission is easier to package
 - Make small, reviewable commits
 - Document testing results as features are completed
 - Use AI for planning, review, and debugging while keeping implementation decisions understandable

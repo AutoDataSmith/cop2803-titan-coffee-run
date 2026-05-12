@@ -40,4 +40,4 @@ For Assignment 7, I am using AI selectively instead of asking it to generate eve
 - Planning small, reviewable commits
 - Drafting testing and documentation files
 
-I still need to install backend dependencies, run the project locally, verify the JSON Server endpoint in the browser, test the frontend with Live Server, and confirm that the final behavior matches the assignment requirements.
+I installed the backend dependencies, verified the JSON Server endpoint, and moved the frontend files into a `titan-run-frontend` folder so the repository now contains separate frontend and backend project folders. I still need to complete the final Live Server browser verification before submission.

@@ -27,7 +27,7 @@
   </header>
 
   <main style="display: none;">
-    <section class="form-section">
+    <section class="form-section wide-section">
       <h2>Quarterly Sales Dashboard</h2>
       <p>
         This dashboard displays quarterly Titan Coffee Run sales data for administrative review.
@@ -38,6 +38,12 @@
       <div class="button-row">
         <button type="button" id="resetSalesButton">Reset Chart</button>
       </div>
+
+      <section class="order-panel api-orders-panel" aria-labelledby="apiOrdersHeading">
+        <h3 id="apiOrdersHeading">Recent Backend Orders</h3>
+        <p id="ordersApiMessage" class="helper-message">Loading backend order data...</p>
+        <div id="ordersApiDisplay"></div>
+      </section>
     </section>
   </main>
 

@@ -327,6 +327,10 @@ section {
   overflow-x: auto;
 }
 
+.api-orders-panel {
+  margin-top: 24px;
+}
+
 .menu-list {
   display: grid;
   gap: 16px;

@@ -6,6 +6,11 @@ Assignment 7 adds a local mock backend using JSON Server and updates the Titan C
 
 The completed Assignment 6 project already had a working customer order/cart/checkout flow using `sessionStorage`. For Assignment 7, I am keeping that flow in place and adding API-based order retrieval as an additional feature. This avoids rewriting the working cart behavior unless the assignment specifically requires it.
 
+The project is organized with separate frontend and backend folders inside one Git repository:
+
+- `titan-run-frontend`
+- `titan-run-backend`
+
 ## Backend Setup
 
 The backend has been added as a separate folder named `titan-run-backend` inside the same project repository. This keeps the frontend and backend together for Git tracking while still separating the mock REST API files from the frontend files.
@@ -13,10 +18,11 @@ The backend has been added as a separate folder named `titan-run-backend` inside
 It includes:
 
 - `package.json`
+- `package-lock.json`
 - `db.json`
 - JSON Server as a dependency
 
-After running `npm install` inside the backend folder, it will also include `package-lock.json` and `node_modules`.
+After running `npm install` inside the backend folder, it will also include `node_modules`.
 
 The order endpoint will be:
 
@@ -31,6 +37,8 @@ The `db.json` file includes at least five order records with unique values for `
 The frontend will use the Fetch API to retrieve order data from JSON Server. The fetched data will be displayed on the page after it is successfully returned from the backend.
 
 The frontend will also include error handling so a user-friendly message appears if JSON Server is not running or the request fails.
+
+In this project, the API-backed order data is displayed on the administrator sales dashboard. This keeps the existing customer order/cart/checkout flow from Assignment 6 intact while still demonstrating REST API data retrieval for Assignment 7.
 
 ## AI Use Summary
 
@@ -60,7 +68,7 @@ Testing will include:
 
 ## Submission Note
 
-The final submission should include both the frontend project and the backend project. If `node_modules` is excluded from the backend folder, the grader should run:
+The final submission should include both the `titan-run-frontend` project and the `titan-run-backend` project. If `node_modules` is excluded from the backend folder, the grader should run:
 
 ```text
 npm install
@@ -71,3 +79,5 @@ inside the `titan-run-backend` folder before starting JSON Server. The backend c
 ```text
 npm start
 ```
+
+On my Windows PowerShell setup, I used `npm.cmd install` and `npm.cmd start` because the `npm.ps1` script was blocked by execution policy.
