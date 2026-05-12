@@ -34,5 +34,4 @@ Backend server: JSON Server on `http://localhost:3000`
 - JSON Server must be running for the successful API retrieval tests.
 - For the error handling test, JSON Server should be stopped on purpose.
 - The Assignment 6 sessionStorage cart should continue working after the Assignment 7 REST API display is added.
-- On Windows PowerShell, `npm.cmd install` and `npm.cmd start` were used because `npm.ps1` was blocked by the local execution policy.
 - JavaScript syntax was checked before final browser testing.
