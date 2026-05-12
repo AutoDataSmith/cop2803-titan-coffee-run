@@ -40,6 +40,8 @@ The frontend also includes error handling so a user-friendly message appears if 
 
 In this project, the API-backed order data is displayed on the administrator sales dashboard. This keeps the existing customer order/cart/checkout flow from Assignment 6 intact while placing backend order records in the project area already used for administrative review.
 
+The Sales page loads its normal chart script, `js/sales-graph.js`. That script also starts the Assignment 7 order display by using the order API code from `js/orders-api.js`.
+
 ## AI Use Summary
 
 AI was used to review the Assignment 7 requirements, compare them to the existing Assignment 6 order/cart implementation, identify grading risks, and plan a small REST API integration.
@@ -79,4 +81,3 @@ inside the `titan-run-backend` folder before starting JSON Server. The backend c
 ```text
 npm start
 ```
-

@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mainContent.style.display = "block";
     renderSalesChart();
+    // Assignment 7: show the backend order records below the sales chart.
     loadBackendOrders();
 
     setTimeout(() => {

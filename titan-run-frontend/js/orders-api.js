@@ -1,6 +1,6 @@
 const ORDERS_API_URL = "http://localhost:3000/orders";
 
-// Format order prices as dollar amounts.   
+// Format order prices as dollar amounts.
 // Future cleanup: this could be shared with the other cart/checkout currency helpers.
 function formatCurrency(amount) {
     return `$${Number(amount).toFixed(2)}`;
@@ -29,7 +29,7 @@ function createOrdersTable(orders) {
     const thead = document.createElement("thead");
     const headerRow = document.createElement("tr");
 
-    // This builds the header using an array of header names
+    // This builds the header using an array of header names.
     ["Order ID", "Date", "Product", "Size", "Quantity", "Price", "Line Total"].forEach((heading) => {
         headerRow.appendChild(createHeaderCell(heading));
     });
@@ -85,10 +85,10 @@ export async function loadBackendOrders() {
 
     message.className = "helper-message";
     message.textContent = "Loading backend order data...";
-    display.replaceChildren();   // Clear any previous order display before loading new data
+    display.replaceChildren(); // Clear any previous order display before loading new data.
 
     try {
-        const orders = await getOrders();  // This makes the actual fetch to order using the JSON Server.
+        const orders = await getOrders(); // Fetch the orders using JSON Server.
 
         if (!Array.isArray(orders) || orders.length === 0) {
             message.textContent = "No backend orders were found.";
