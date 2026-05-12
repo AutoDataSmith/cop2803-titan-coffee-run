@@ -32,17 +32,17 @@ http://localhost:3000/orders
 
 The `db.json` file includes at least five order records with unique values for `id`, `date`, and product details.
 
-## Planned Frontend Update
+## Frontend Update
 
-The frontend will use the Fetch API to retrieve order data from JSON Server. The fetched data will be displayed on the page after it is successfully returned from the backend.
+The frontend uses the Fetch API to retrieve order data from JSON Server. The fetched data is displayed on the page after it is successfully returned from the backend.
 
-The frontend will also include error handling so a user-friendly message appears if JSON Server is not running or the request fails.
+The frontend also includes error handling so a user-friendly message appears if JSON Server is not running or the request fails.
 
-In this project, the API-backed order data is displayed on the administrator sales dashboard. This keeps the existing customer order/cart/checkout flow from Assignment 6 intact while still demonstrating REST API data retrieval for Assignment 7.
+In this project, the API-backed order data is displayed on the administrator sales dashboard. This keeps the existing customer order/cart/checkout flow from Assignment 6 intact while placing backend order records in the project area already used for administrative review.
 
 ## AI Use Summary
 
-AI was used to help review the Assignment 7 requirements, compare them to the existing Assignment 6 order/cart implementation, identify grading risks, and plan a small REST API integration.
+AI was used to review the Assignment 7 requirements, compare them to the existing Assignment 6 order/cart implementation, identify grading risks, and plan a small REST API integration.
 
 I used AI mainly for:
 
@@ -52,11 +52,11 @@ I used AI mainly for:
 - Testing checklist creation
 - Documentation drafting
 
-I still made the project decisions, will run the local backend and frontend myself, and will test the final behavior in the browser.
+I made the project decisions, ran the local backend checks, and tested the implementation against the assignment requirements.
 
 ## Testing Plan
 
-Testing will include:
+Testing includes:
 
 - Verifying JSON Server starts successfully
 - Opening `http://localhost:3000/orders` directly in the browser
@@ -68,7 +68,7 @@ Testing will include:
 
 ## Submission Note
 
-The final submission should include both the `titan-run-frontend` project and the `titan-run-backend` project. If `node_modules` is excluded from the backend folder, the grader should run:
+The final submission should include both the `titan-run-frontend` project and the `titan-run-backend` project. If `node_modules` is excluded from the backend folder, the instructor should run:
 
 ```text
 npm install
@@ -80,4 +80,3 @@ inside the `titan-run-backend` folder before starting JSON Server. The backend c
 npm start
 ```
 
-On my Windows PowerShell setup, I used `npm.cmd install` and `npm.cmd start` because the `npm.ps1` script was blocked by execution policy.

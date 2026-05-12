@@ -8,8 +8,8 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 
 **Title:** Retrieve Order Data from a REST API
 
-**As a** Titan Coffee Run administrator,  
-**I want to** view order data loaded from a backend endpoint,  
+**As a** Titan Coffee Run administrator,<br>
+**I want to** view order data loaded from a backend endpoint,<br>
 **So that I can** practice using client-server communication instead of relying only on hardcoded frontend data.
 
 ---
@@ -71,7 +71,7 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
   - quantity
   - price
 - Keep the display simple and consistent with the existing project style
-- Place the backend order display on `sales.html` so it fits the admin review purpose of the dashboard
+- Place the backend order display on `sales.html` so backend order records appear in the admin review area
 
 ---
 
@@ -80,7 +80,7 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 - Handle failed network requests
 - Handle non-success HTTP responses
 - Display a readable message when JSON Server is unavailable
-- Log useful details to the console for debugging without showing technical stack details to the user
+- Log useful details to the console while showing a simple message to the user
 
 ---
 
@@ -102,7 +102,6 @@ Add a local REST API backend with JSON Server and update the Titan Coffee Run fr
 - Keep the frontend in `titan-run-frontend` so the final submission is easier to package
 - Make small, reviewable commits
 - Document testing results as features are completed
-- Use AI for planning, review, and debugging while keeping implementation decisions understandable
 
 ---
 

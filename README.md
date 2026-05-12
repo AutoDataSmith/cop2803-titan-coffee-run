@@ -124,7 +124,7 @@ http://localhost:3000/orders
 
 Run the frontend from the `titan-run-frontend` folder with Live Server or another local server. Do not open the HTML files with `file://` because this project uses ES6 modules.
 
-To view the admin dashboard and backend order display, log in with:
+To view the backend order display, log in with the Assignment 5 admin credentials and open `sales.html`:
 
 ```text
 Username: admin
@@ -210,7 +210,7 @@ The order cart uses `sessionStorage` so items remain available during the user's
 
 ### Assignment 7 API Approach
 
-Assignment 7 introduces a local JSON Server backend for REST API practice. The approach is additive: keep the working Assignment 6 cart and checkout flow in `sessionStorage`, then add an API-backed order display on the admin sales dashboard that retrieves order records from `http://localhost:3000/orders`.
+Assignment 7 introduces a local JSON Server backend for REST API practice. The approach is additive: keep the working Assignment 6 cart and checkout flow in `sessionStorage`, then add an API-backed order display to the admin sales dashboard that retrieves order records from `http://localhost:3000/orders`.
 
 This keeps the project aligned with the assignment goal of practicing client-server communication without unnecessarily rewriting the completed cart flow.
 
